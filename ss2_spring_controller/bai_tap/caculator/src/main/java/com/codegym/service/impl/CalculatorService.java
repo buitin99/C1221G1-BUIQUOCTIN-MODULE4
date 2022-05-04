@@ -7,22 +7,21 @@ import org.springframework.stereotype.Service;
 public class CalculatorService implements ICalculatorService {
 
     @Override
-    public Integer calculate(Integer number1, Integer number2, String calculation) {
-        Integer result;
-        switch (calculation){
+    public String calculate(Integer number1, Integer number2, String calculation) {
+
+        switch (calculation) {
             case "addition":
-                result = number1 + number2;
-                break;
+                return Integer.toString(number1 + number2);
             case "subtraction":
-                result = number1 - number2;
-                break;
+                return Integer.toString(number1 - number2);
             case "multiplication":
-                result = number1*number2;
-                break;
+                return Integer.toString(number1 * number2);
             default:
-                result = number1 / number2;
-                break;
+                if (number2 != 0) {
+                    return Integer.toString(number1 / number2);
+                } else {
+                    return "can't divition by 0";
+                }
         }
-        return result;
     }
 }
