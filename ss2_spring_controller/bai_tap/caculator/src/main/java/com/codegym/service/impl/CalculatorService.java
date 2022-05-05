@@ -8,7 +8,6 @@ public class CalculatorService implements ICalculatorService {
 
     @Override
     public String calculate(Integer number1, Integer number2, String calculation) {
-
         switch (calculation) {
             case "addition":
                 return Integer.toString(number1 + number2);
@@ -25,3 +24,5 @@ public class CalculatorService implements ICalculatorService {
         }
     }
 }
+
+
