@@ -43,6 +43,11 @@ public class ProductRepository implements IProductRepository {
         productMap.remove(id);
     }
 
+    @Override
+    public void update(Integer id, Product product) {
+        productMap.replace(id,product);
+    }
+
 //    @Override
 //    public Product search(String nameSearch) {
 //        productMap.entrySet().contains(nameSearch);

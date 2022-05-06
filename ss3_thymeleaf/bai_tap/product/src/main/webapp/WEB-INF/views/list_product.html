@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create">Go Create Product</a>
+<span th:text="${msg}"></span>
+<table>
+    <tr th:each="products : ${productList}">
+        <td th:text="${products.id}"></td>
+        <td th:text="${products.name}"></td>
+        <td th:text="${products.price}"></td>
+        <td th:text="${products.describer}"></td>
+        <td th:text="${products.manufacture}"></td>
+        <td th:text="${products.manufacture}"></td>
+        <td><a th:href="@{/detail(id=${products.id})}">Detail (RP)</a></td>
+        <td><a th:href="@{/detail/{id}(id=${products.id})}">Detail (RP)</a></td>
+        <td><a th:href="@{/delete(id=${products.id})}">Delete Product</a></td>
+        <td><a th:href="@{/update(id=${products.id})}">Update Product</a></td>
+    </tr>
+</table>
+</body>
+</html>

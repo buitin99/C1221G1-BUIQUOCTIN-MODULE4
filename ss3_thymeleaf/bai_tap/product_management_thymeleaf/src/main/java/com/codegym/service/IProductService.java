@@ -13,5 +13,8 @@ public interface IProductService {
 
     void deleteProduct(Integer id);
 
+    void update(Integer id,Product product);
+
+
 //    Product search(String nameSearch);
 }
