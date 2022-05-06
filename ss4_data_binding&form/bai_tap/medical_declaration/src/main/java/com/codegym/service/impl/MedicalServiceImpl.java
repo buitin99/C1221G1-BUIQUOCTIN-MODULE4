@@ -16,4 +16,9 @@ public class MedicalServiceImpl implements IMedicalService {
     public void update(Medical medical) {
         this.iMedicalRepository.update(medical);
     }
+
+    @Override
+    public Medical getMedical() {
+        return this.iMedicalRepository.getMedical();
+    }
 }

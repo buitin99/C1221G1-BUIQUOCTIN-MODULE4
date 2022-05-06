@@ -59,11 +59,11 @@
     <br>
     <div>
         Ngày khời hành:
-        <form:input type="text" path="ngayKhoiHanh"/>
+        <form:input type="date" path="ngayKhoiHanh"/>
     </div>
     <div>
         Ngày kết thúc:
-        <form:input type="text" path="ngayKetThuc"/>
+        <form:input type="date" path="ngayKetThuc"/>
     </div>
     <div>
         Trong vòng 14 ngày có đi đâu không:

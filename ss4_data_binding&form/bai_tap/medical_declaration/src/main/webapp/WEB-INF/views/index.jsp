@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -12,5 +13,11 @@
   </head>
   <body>
     <a href="/create">Update</a>
+    <c:forEach var="medicals" items="${medicalList}">
+      <tr>
+     <td>${medicals}</td>
+      </tr>
+
+    </c:forEach>
   </body>
 </html>

@@ -25,7 +25,7 @@ public class MedicalController {
     @PostMapping(value = "/create")
     public String updateMedical(@ModelAttribute Medical medical, RedirectAttributes redirectAttributes, Model model){
         this.iMedicalService.update(medical);
-        redirectAttributes.addFlashAttribute("msg","Update success!");
-        return  "home";
+        model.addAttribute("medicalList",this.iMedicalService.getMedical());
+        return "index";
     }
 }
