@@ -6,8 +6,9 @@
 </head>
 <body>
 <h2>Update Product</h2>
-<form action="#" th:action="@{/edit}" th:object="${product}" th:method="POST">
-    <div>
+<form action="#" th:action="@{/update}" th:object="${product}"
+      method="POST" class="form-control">
+    <input type="hidden" th:field="*{id}"/>
         Name:
         <input type="text" th:field="*{name}">
     </div>

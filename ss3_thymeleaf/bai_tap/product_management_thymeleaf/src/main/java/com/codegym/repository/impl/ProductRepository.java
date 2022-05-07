@@ -43,10 +43,10 @@ public class ProductRepository implements IProductRepository {
         productMap.remove(id);
     }
 
-    @Override
-    public void update(Integer id, Product product) {
-        productMap.replace(id,product);
-    }
+//    @Override
+//    public void update(Integer id, Product product) {
+//        productMap.replace(id,product);
+//    }
 
     @Override
     public List<Product> search(String nameSearch) {
@@ -57,6 +57,11 @@ public class ProductRepository implements IProductRepository {
             }
         }
         return list;
+    }
+
+    @Override
+    public void update(Integer id, Product product) {
+        productMap.put(id,product);
     }
 
 //    @Override

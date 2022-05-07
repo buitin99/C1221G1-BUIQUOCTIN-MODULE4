@@ -12,9 +12,9 @@ public interface IProductRepository {
 
     void delete(Integer id);
 
-    void update(Integer id, Product product);
+//    void update(Integer id, Product product);
 
     List<Product> search(String nameSearch);
 
-//    Product search(String nameSearch);
+    void update(Integer id, Product product);
 }
