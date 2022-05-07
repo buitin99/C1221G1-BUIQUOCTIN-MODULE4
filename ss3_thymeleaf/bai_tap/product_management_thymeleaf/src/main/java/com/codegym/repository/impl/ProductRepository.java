@@ -48,6 +48,17 @@ public class ProductRepository implements IProductRepository {
         productMap.replace(id,product);
     }
 
+    @Override
+    public List<Product> search(String nameSearch) {
+        List<Product> list = new ArrayList<>();
+        for (Map.Entry<Integer, Product> entry : productMap.entrySet()) {
+            if(entry.getValue().getName().contains(nameSearch)){
+                list.add(entry.getValue());
+            }
+        }
+        return list;
+    }
+
 //    @Override
 //    public Product search(String nameSearch) {
 //        productMap.entrySet().contains(nameSearch);

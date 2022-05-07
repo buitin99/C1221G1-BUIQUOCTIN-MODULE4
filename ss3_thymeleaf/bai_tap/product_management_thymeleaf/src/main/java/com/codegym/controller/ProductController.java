@@ -56,24 +56,22 @@ public class ProductController {
         return "redirect:/list";
     }
 
-//    @PostMapping(value = "/search")
-//    public String searchProduct(@RequestParam String nameSearch, Model model){
-//        Product product = this.iProductService.search(nameSearch);
-//        model.addAttribute("product",product);
-//        return "search_product";
-//    }
+    @GetMapping(value = "/search")
+    public String searchProduct(@RequestParam String nameSearch, Model model){
+        model.addAttribute("productList",this.iProductService.search(nameSearch));
+        return "/list_product";
+    }
 
 
     @GetMapping("/update")
-    public String goUpdateProduct(@RequestParam Integer id, Model model) {
-        Product product = this.iProductService.findById(id);
-        model.addAttribute("product", product);
+    public String goUpdateProduct(Model model,@RequestParam Integer id) {
+        model.addAttribute("product", this.iProductService.findById(id));
         return "update_product";
     }
 
-    @PostMapping(value = "/update")
-    public String updateProduct(@RequestParam Integer id,@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
-        this.iProductService.update(id,product);
+    @PostMapping(value = "/edit")
+    public String updateProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
+        this.iProductService.update(product.getId(), product);
         redirectAttributes.addFlashAttribute("msg", "Update new product success!");
         return "redirect:/list";
     }

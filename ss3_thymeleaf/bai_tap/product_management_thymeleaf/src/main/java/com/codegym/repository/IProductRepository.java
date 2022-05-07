@@ -14,5 +14,7 @@ public interface IProductRepository {
 
     void update(Integer id, Product product);
 
+    List<Product> search(String nameSearch);
+
 //    Product search(String nameSearch);
 }

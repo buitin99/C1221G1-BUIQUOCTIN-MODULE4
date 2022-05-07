@@ -15,6 +15,8 @@ public interface IProductService {
 
     void update(Integer id,Product product);
 
+    List<Product> search(String nameSearch);
+
 
 //    Product search(String nameSearch);
 }

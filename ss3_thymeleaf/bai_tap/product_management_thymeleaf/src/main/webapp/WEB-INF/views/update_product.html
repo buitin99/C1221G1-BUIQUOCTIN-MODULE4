@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Update Product</h2>
-<form action="/update" th:object="${product}" method="post">
+<form action="#" th:action="@{/edit}" th:object="${product}" th:method="POST">
     <div>
         Name:
         <input type="text" th:field="*{name}">
