@@ -8,6 +8,7 @@
 </head>
 <body>
 <table>
+    <a href="/create">Go Create Product</a>
     <tr th:each="musics : ${musicList}">
         <td th:text="${musics.id}"></td>
         <td th:text="${musics.name}"></td>
@@ -17,39 +18,40 @@
             <a th:href="${musics.link}" th:text="${musics.link}"></a>
         </td>
         <td><a th:href="@{/update(id=${musics.id})}">Update Music</a></td>
-        <td><a th:href="@{/delete(id=${musics.id})}">Delete Music</a></td>
+        <!--        <td><a th:href="@{/delete(id=${musics.id})}">Delete Music</a></td>-->
     </tr>
 </table>
 
-<form th:action="/delete" method="post">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">>
-                    <input type="hidden" name="${}" id="idCustomerDelete">
-                    <p style="color: red">Bạn có chắc muốn xóa <span id=""></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Xóa</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-<script>
-    function deleteCustomer(id, name) {
-        document.getElementById("idCustomerDelete").value = id;
-        document.getElementById("nameCustomer").innerText = name;
-    }
-</script>
+<!--<form th:action="/delete" method="post">-->
+<!--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--         aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    &lt;!&ndash;                    <input type="hidden" name="action" value="delete">&ndash;&gt;-->
+<!--                    <input type="hidden" name="id" id="idDelete">-->
+<!--                    <p style="color: red">Bạn có chắc muốn xóa <span id="name"></span></p>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="submit" class="btn btn-primary">Xóa</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
+<!--<script>-->
+<!--    function deleteCustomer(id, name) {-->
+<!--        document.getElementById("idDelete").value = id;-->
+<!--        document.getElementById("name").innerText = name;-->
+<!--    }-->
+<!--</script>-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
