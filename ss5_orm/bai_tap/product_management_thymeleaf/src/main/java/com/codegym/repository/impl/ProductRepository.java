@@ -42,15 +42,6 @@ public class ProductRepository implements IProductRepository {
         entityTransaction.commit();
     }
 
-
-    @Override
-    public Product search(String nameSearch) {
-        TypedQuery<Product> typedQuery = BaseRepository.entityManager.
-                createQuery("select p from Product p where p.name =:nameSearch", Product.class);
-        typedQuery.setParameter("nameSearch",name);
-        return typedQuery.getResultList();
-    }
-
     @Override
     public void update(Product product) {
         EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();

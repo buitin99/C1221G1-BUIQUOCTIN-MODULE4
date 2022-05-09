@@ -12,9 +12,5 @@ public interface IProductRepository {
 
     void delete(Product product);
 
-//    void update(Integer id, Product product);
-
-    Product search(String nameSearch);
-
     void update(Product product);
 }

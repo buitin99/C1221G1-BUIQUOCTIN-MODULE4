@@ -57,12 +57,6 @@ this.iProductService.deleteProduct(product);
         return "redirect:/list";
     }
 
-    @GetMapping(value = "/search")
-    public String searchProduct(@RequestParam String nameSearch, Model model){
-        model.addAttribute("productList",this.iProductService.search(nameSearch));
-        return "/list_product";
-    }
-
 
     @GetMapping(value = "/edit")
     public String goEdit(Model model,@RequestParam int id){

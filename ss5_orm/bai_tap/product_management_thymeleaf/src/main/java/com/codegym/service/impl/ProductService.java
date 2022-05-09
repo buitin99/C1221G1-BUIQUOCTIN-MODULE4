@@ -34,24 +34,9 @@ public class ProductService implements IProductService {
         this.iProductRepository.delete(product);
     }
 
-//    @Override
-//    public void update(Integer id,Product product) {
-//        this.iProductRepository.update(id,product);
-//    }
-
-    @Override
-    public Product search(String nameSearch) {
-        return this.iProductRepository.search(nameSearch);
-    }
-
     @Override
     public void update(Product product) {
         this.iProductRepository.update(product);
     }
 
-
-//    @Override
-//    public Product search(String nameSearch) {
-//        return this.iProductRepository.search(nameSearch);
-//    }
 }

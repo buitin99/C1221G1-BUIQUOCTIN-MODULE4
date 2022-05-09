@@ -13,12 +13,6 @@ public interface IProductService {
 
     void deleteProduct(Product product);
 
-//    void update(Integer id,Product product);
-
-    Product search(String nameSearch);
-
     void update(Product product);
 
-
-//    Product search(String nameSearch);
 }
