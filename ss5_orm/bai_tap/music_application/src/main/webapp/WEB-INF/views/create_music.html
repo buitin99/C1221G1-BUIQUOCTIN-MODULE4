@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
 <h2>Create Music</h2>
@@ -25,5 +26,7 @@
     </div>
     <input type="submit" value="Create">
 </form>
+
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 </body>
 </html>
