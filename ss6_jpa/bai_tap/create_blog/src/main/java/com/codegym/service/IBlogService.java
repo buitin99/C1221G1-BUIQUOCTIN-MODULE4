@@ -14,4 +14,6 @@ public interface IBlogService {
     void update(Blog blog);
 
     void delete(Blog blog);
+
+    List<Blog> search(String nameSearch);
 }

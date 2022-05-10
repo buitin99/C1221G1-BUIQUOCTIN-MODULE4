@@ -39,4 +39,9 @@ public class BlogServiceImpl implements IBlogService {
         iBlogRepository.delete(blog);
     }
 
+    @Override
+    public List<Blog> search(String nameSearch) {
+        return iBlogRepository.search("%" +nameSearch+"%");
+    }
+
 }
