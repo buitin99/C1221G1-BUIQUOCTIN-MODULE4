@@ -33,9 +33,9 @@ public class BlogController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String goBlogList(Model model, @PageableDefault(value = 2) Pageable pageable,@RequestParam Optional<String> keywork) {
         String keyworkVal = keywork.orElse("");
-        model.addAttribute("blogLists", this.iBlogService.getList(pageable));
+//        model.addAttribute("blogLists", this.iBlogService.getList(pageable));
         model.addAttribute("keyworkVal",keyworkVal);
-
+        model.addAttribute("blogLists",this.iBlogService.getBlogByName(keyworkVal,pageable));
         return "list";
     }
 

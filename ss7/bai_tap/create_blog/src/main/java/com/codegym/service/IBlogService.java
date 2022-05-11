@@ -20,4 +20,6 @@ public interface IBlogService {
     List<Blog> search(String nameSearch);
 
     Page<Blog> getList(Pageable pageable);
+
+    Page<Blog> getBlogByName(String keyworkVal, Pageable pageable);
 }

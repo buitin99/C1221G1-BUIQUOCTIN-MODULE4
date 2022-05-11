@@ -15,8 +15,16 @@
 <a href="/create">Create new blog</a>
 <span th:text="${msg}"></span>
 
-<form th:action="@{/search}" method="get">
-    <input type="text" placeholder="search" name="nameSearch">
+<form th:action="@{/}" method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" name="keywork"/>
+            <label class="form-label" for="form1">Search</label>
+        </div>
+        <button class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
     <input type="submit" value="Search">
 </form>
 <table>

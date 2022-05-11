@@ -49,5 +49,10 @@ public class BlogService implements IBlogService {
         return iBlogRepository.findAll(pageable);
     }
 
+    @Override
+    public Page<Blog> getBlogByName(String keyworkVal, Pageable pageable) {
+        return iBlogRepository.findAllByNameContaining(keyworkVal,pageable);
+    }
+
 
 }
