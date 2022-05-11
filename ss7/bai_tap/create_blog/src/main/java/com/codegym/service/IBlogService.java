@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IBlogService {
-    Page<Blog> findAll(String keywork, Pageable pageable);
 
     void create(Blog blog);
 
@@ -18,4 +18,6 @@ public interface IBlogService {
     void delete(Blog blog);
 
     List<Blog> search(String nameSearch);
+
+    Page<Blog> getList(Pageable pageable);
 }
