@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BlogService implements IBlogService {
@@ -39,10 +38,7 @@ public class BlogService implements IBlogService {
         iBlogRepository.delete(blog);
     }
 
-    @Override
-    public List<Blog> search(String nameSearch) {
-        return iBlogRepository.search("%" +nameSearch+"%");
-    }
+
 
     @Override
     public Page<Blog> getList(Pageable pageable) {
@@ -52,6 +48,12 @@ public class BlogService implements IBlogService {
     @Override
     public Page<Blog> getBlogByName(String keyworkVal, Pageable pageable) {
         return iBlogRepository.findAllByNameContaining(keyworkVal,pageable);
+//        return iBlogRepository.getAllByName("%" + keyworkVal + "%",pageable);
+    }
+
+    @Override
+    public Page<Blog> search(String name, Pageable pageable) {
+        return iBlogRepository.findAllByNameContaining(name,pageable);
     }
 
 

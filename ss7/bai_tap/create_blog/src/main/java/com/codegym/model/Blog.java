@@ -1,6 +1,7 @@
 package com.codegym.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "blog")
@@ -20,15 +21,18 @@ public class Blog {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
+    private String date;
+
     public Blog() {
     }
 
-    public Blog(String name, String describer, String author, String content, Category category) {
+    public Blog(String name, String describer, String author, String content, Category category, String date) {
         this.name = name;
         this.describer = describer;
         this.author = author;
         this.content = content;
         this.category = category;
+        this.date = date;
     }
 
     public Integer getId() {
@@ -77,5 +81,13 @@ public class Blog {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

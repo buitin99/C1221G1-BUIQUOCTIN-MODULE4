@@ -16,10 +16,11 @@ public interface IBlogService {
     void update(Blog blog);
 
     void delete(Blog blog);
-
-    List<Blog> search(String nameSearch);
+    
 
     Page<Blog> getList(Pageable pageable);
 
     Page<Blog> getBlogByName(String keyworkVal, Pageable pageable);
+
+    Page<Blog> search(String name, Pageable pageable);
 }

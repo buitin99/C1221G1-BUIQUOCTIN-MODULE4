@@ -23,4 +23,8 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
 
 
     Page<Blog> findAllByNameContaining(String keyworkVal, Pageable pageable);
+
+
+    @Query(value = "select * from blog where keyworkVal like :key ",nativeQuery = true)
+    Page<Blog> getAllByName(@Param("key") String keyworkVal, Pageable pageable);
 }

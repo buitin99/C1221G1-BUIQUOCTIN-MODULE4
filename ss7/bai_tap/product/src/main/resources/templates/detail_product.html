@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Detail Product</h2>
+<div>Id:
+    <th:block th:text="${product.id}"></th:block>
+</div>
+<div>Name:
+    <th:block th:text="${product.name}"></th:block>
+</div>
+<div>Price:
+    <th:block th:text="${product.price}"></th:block>
+</div>
+<div>Describer:
+    <th:block th:text="${product.describer}"></th:block>
+</div>
+<div>Manufacture:
+    <th:block th:text="${product.manufacture}"></th:block>
+</div>
+</body>
+</html>

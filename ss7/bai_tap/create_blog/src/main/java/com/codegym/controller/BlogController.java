@@ -18,6 +18,7 @@ import java.util.Optional;
 @Controller
 public class BlogController {
 
+
     @Autowired
     private IBlogService iBlogService;
 
@@ -81,8 +82,14 @@ public class BlogController {
     }
 
     @GetMapping(value = "/search")
-    public String searchBlog(@RequestParam String nameSearch, Model model) {
-        model.addAttribute("blogList", this.iBlogService.search(nameSearch));
+    public String searchBlog(@RequestParam("search") Optional<String> name,
+                             @RequestParam("sort") Optional<String> sort,
+                             @PageableDefault(value = 2, sort = {}) Pageable pageable,Model model) {
+        String nameSearch = name.orElse("");
+        String sortBy = sort.orElse("");
+        model.addAttribute("blogLists", this.iBlogService.search(nameSearch,pageable));
+        model.addAttribute("sortBy",sortBy);
+        model.addAttribute("nameSearch",nameSearch);
         return "list";
     }
 }

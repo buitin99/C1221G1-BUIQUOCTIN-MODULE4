@@ -30,6 +30,10 @@
                 <option th:each="c : ${categorys}" th:value="${c.id}" th:text="${c.type}"></option>
             </select>
         </div>
+        <div>
+            Date:
+            <input type="date" th:field="*{date}">
+        </div>
         <input type="submit" value="Update">
     </form>
 </body>

@@ -24,10 +24,15 @@
         <input type="text" th:field="*{content}">
     </div>
     <div>
+        Date:
+        <input type="date" th:field="*{date}">
+    </div>
+    <div>
         <select th:field="*{category}">
             <option th:each="c : ${categorys}" th:value="${c.id}" th:text="${c.type}"></option>
         </select>
     </div>
+
     <div>
         <input type="submit" value="Create">
     </div>
