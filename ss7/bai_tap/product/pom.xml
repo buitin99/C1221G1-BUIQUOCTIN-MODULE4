@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.codegym</groupId>
-    <artifactId>product_management</artifactId>
+    <artifactId>product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>product_management</name>
-    <description>product_management</description>
+    <name>product</name>
+    <description>product</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>

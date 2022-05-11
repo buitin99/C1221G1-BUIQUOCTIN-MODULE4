@@ -1,11 +1,11 @@
 package com.codegym.service;
 
 import com.codegym.model.Product;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IProductService {
-    List<Product> findAll();
+    Page<Product> getProductByName(String keyworkVal, Pageable pageable);
 
     void create(Product product);
 
@@ -14,5 +14,4 @@ public interface IProductService {
     void deleteProduct(Product product);
 
     void update(Product product);
-
 }
