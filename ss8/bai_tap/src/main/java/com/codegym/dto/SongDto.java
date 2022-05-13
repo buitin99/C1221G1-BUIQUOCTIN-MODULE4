@@ -13,14 +13,14 @@ public class SongDto implements Validator {
 
     @NotEmpty
     @Size(max = 800)
-    @Pattern(regexp = "^`|~|!|@|#|$|%|^|&|(|)|-|_|=|[|]|}|/|>|.|<|,$",message = "tên không được chứa ký tự đặt biệt")
+    @Pattern(regexp = "^[A-Za-z\\d]+$",message = "tên không được chứa ký tự đặt biệt")
     private String name;
     @NotEmpty
     @Size(max = 300)
     private String artist;
     @NotEmpty
     @Size(max = 1000)
-    @Pattern(regexp = "^`|~|!|@|#|$|%|^|&|(|)|-|_|=|[|]|}|/|>|.|<$",message = "thể loại không được đặt ký tự đặt biệt ngoài dấu ,")
+    @Pattern(regexp = "^[A-Za-z,\\d]+$",message = "thể loại không được đặt ký tự đặt biệt ngoài dấu ,")
     private String type;
 
     public SongDto() {
@@ -67,19 +67,5 @@ public class SongDto implements Validator {
     public void validate(Object target, Errors errors) {
         SongDto songDto = (SongDto) target;
 
-        String regex = "^`|~|!|@|#|$|%|^|&|(|)|-|_|=|[|]|}|/|>|.|<|,$";
-        String regexType = "^`|~|!|@|#|$|%|^|&|(|)|-|_|=|[|]|}|/|>|.|<$";
-
-        if (!"".equals(songDto.getArtist())){
-            if(!songDto.getArtist().matches(regex)){
-                errors.rejectValue("artist", "character.forbidden", "errors");
-            }
-        }
-
-        if (!"".equals(songDto.getType())){
-            if(!songDto.getType().contains(regexType)){
-                errors.rejectValue("artist", "character.forbidden", "errors");
-            }
-        }
      }
 }
