@@ -6,7 +6,12 @@
 </head>
 <body>
 <a href="/create">Go Create Song</a>
+<br>
 <table>
+    <tr>Name</tr>
+    <tr>Artist</tr>
+    <tr>Type</tr>
+    <tr>Update</tr>
     <tr th:each="songs : ${songList}">
         <td th:text="${songs.name}"></td>
         <td th:text="${songs.artist}"></td>

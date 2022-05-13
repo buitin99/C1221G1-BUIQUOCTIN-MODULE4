@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,6 +11,17 @@
     <input type="text" placeholder="search" name="nameSearch">
     <button type="submit">Find</button>
 </form>
+<a href="/?sort=name,desc">sort</a>
+<div>
+    <a th:if="${productList.hasPrevious()}"
+       th:href="@{/(page=${productList.number - 1 },sort=${sortBy})}">
+        Previous
+    </a>
+    <span th:text="${productList.number +1 }"></span>/<span th:text="${productList.totalPages}"></span>
+    <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1 },name=${nameSearch},sort=${sortBy})}">
+        Next
+    </a>
+</div>
 <table>
     <tr th:each="products : ${productList}">
         <td th:text="${products.id}"></td>
@@ -24,15 +35,6 @@
         <td><a th:href="@{/edit(id=${products.id})}">Update Product</a></td>
     </tr>
 </table>
-<div>
-    <a th:if="${productList.hasPrevious()}"
-       th:href="@{/(page=${productList.number - 1 }, keywork=${keyworkVal})}">
-        Previous
-    </a>
-    <span th:text="${productList.number +1 }"></span>/<span th:text="${productList.totalPages}"></span>
-    <a th:if="${productList.hasNext()}" th:href="@{/(page=${productList.number + 1 }, keywork=${keyworkVal})}">
-        Next
-    </a>
-</div>
+
 </body>
 </html>
