@@ -28,6 +28,11 @@
     <p style="color: red" th:if="${#fields.hasErrors('manufacture')}" th:errors="*{manufacture}"></p>
   </div>
   <div>
+    <select th:field="*{category}">
+      <option th:each="c : ${categoryList}" th:value="${c.id}" th:text="${c.typeProduct}"></option>
+    </select>
+  </div>
+  <div>
     <input type="submit" value="Create">
   </div>
 </form>

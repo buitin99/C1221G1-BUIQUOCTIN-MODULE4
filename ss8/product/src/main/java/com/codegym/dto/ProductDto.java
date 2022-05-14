@@ -1,5 +1,6 @@
 package com.codegym.dto;
 
+import com.codegym.model.Category;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -20,16 +21,17 @@ public class ProductDto implements Validator {
     private String describer;
     @NotBlank
     private String manufacture;
+    private Category category;
 
     public ProductDto() {
     }
 
-    public ProductDto(Integer id, String name, Double price, String describer, String manufacture) {
-        this.id = id;
+    public ProductDto(String name, Double price, String describer, String manufacture, Category category) {
         this.name = name;
         this.price = price;
         this.describer = describer;
         this.manufacture = manufacture;
+        this.category = category;
     }
 
     public Integer getId() {
@@ -70,6 +72,14 @@ public class ProductDto implements Validator {
 
     public void setManufacture(String manufacture) {
         this.manufacture = manufacture;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.codegym.controller;
 
 import com.codegym.dto.ProductDto;
 import com.codegym.model.Product;
+import com.codegym.service.ICategoryService;
 import com.codegym.service.IProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,22 @@ public class ProductController {
     @Autowired
     private IProductService iProductService;
 
+    @Autowired
+    private ICategoryService iCategoryService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String goProductList(@RequestParam("name") Optional<String> name, @PageableDefault(value = 2, sort = {}) Pageable pageable,
+    public String goProductList(@RequestParam("name") Optional<String> name,
+                                @RequestParam("describerSearch") Optional<String> desFind,
+                                @RequestParam("typeSearch") Optional<String> typeFind
+            , @PageableDefault(value = 2, sort = {}) Pageable pageable,
                                 Model model,  @RequestParam Optional<String> sort) {
         String nameSearch = name.orElse("");
         String sortBy = sort.orElse("");
-        model.addAttribute("productList", this.iProductService.findByNameContaining(nameSearch,pageable));
+        String desSearch = desFind.orElse("");
+        String typeSearch = typeFind.orElse("");
+        model.addAttribute("categoryList",this.iCategoryService.findAll());
+//        model.addAttribute("productList", this.iProductService.findByNameContaining(nameSearch,pageable));
+        model.addAttribute("productList", this.iProductService.findProductCustom(nameSearch,desSearch,typeSearch,pageable));
         model.addAttribute("nameSearch", nameSearch);
         model.addAttribute("sortBy", sortBy);
         return "list";
@@ -49,6 +60,7 @@ public class ProductController {
         new ProductDto().validate(productDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             redirectAttributes.addFlashAttribute("message", "Create Song fail!");
+            model.addAttribute("categoryList",this.iCategoryService.findAll());
             return "create";
         } else {
             Product product = new Product();
