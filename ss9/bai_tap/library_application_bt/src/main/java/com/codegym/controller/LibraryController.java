@@ -37,12 +37,13 @@ public class LibraryController {
     }
 
     @PostMapping(value = "/rent")
-    public String update(@RequestParam Integer id, Book book, Model model) {
+    public String update(@RequestParam Integer id, Book book, Model model,RedirectAttributes redirectAttributes) {
         Book books = iLibraryService.findById(id);
         iLibraryService.save(books);
         Rent rent = new Rent();
         rent.setBook(book);
         iRentService.save(rent);
+        redirectAttributes.addFlashAttribute("msg", "your code: " + rent.getIdRent());
         return "redirect:/";
     }
 
