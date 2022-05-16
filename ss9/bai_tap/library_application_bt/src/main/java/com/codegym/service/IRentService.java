@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface IRentService {
     void save(Rent rent);
 
-    Optional<Rent> findById(Integer id);
+    Rent findById(Long idRent);
 
     void delete(Rent rent);
 }

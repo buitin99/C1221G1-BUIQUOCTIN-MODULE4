@@ -22,20 +22,15 @@ public class RentService implements IRentService {
         iRentRepository.save(rent);
     }
 
-
     @Override
-    public Optional<Rent> findById(Integer id) {
-        Optional<Rent> rentCode = this.iRentRepository.findById(id);
-        if(id != null){
-            return rentCode;
-        }
-        return rentCode;
+    public Rent findById(Long idRent) {
+        Integer id = (int) (long) idRent;
+        return iRentRepository.findById(id).orElse(null);
     }
 
     @Override
     public void delete(Rent rent) {
-        this.iRentRepository.delete(rent);
+        iRentRepository.delete(rent);
     }
-
 
 }

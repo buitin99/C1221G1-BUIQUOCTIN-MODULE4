@@ -36,10 +36,6 @@ public class LibraryService implements ILibraryService {
         iLibraryRepository.save(books);
     }
 
-    @Override
-    public void give(Book book) {
-        book.setQuantity(book.getQuantity()+1);
-        this.iLibraryRepository.save(book);
-    }
+
 
 }
