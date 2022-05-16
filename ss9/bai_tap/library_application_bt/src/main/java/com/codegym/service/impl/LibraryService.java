@@ -36,6 +36,13 @@ public class LibraryService implements ILibraryService {
         iLibraryRepository.save(books);
     }
 
+    @Override
+    public void returnBook(Book book) {
+        if(book.getId() != null){
+            book.setQuantity(book.getQuantity()+1);
+        }
+        this.iLibraryRepository.save(book);
+    }
 
 
 }

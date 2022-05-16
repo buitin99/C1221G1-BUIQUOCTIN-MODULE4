@@ -47,18 +47,11 @@ public class LibraryController {
     }
 
     @PostMapping(value = "/give")
-    public String give(@RequestParam Long idRent) {
-        Rent rent = this.iRentService.findById(idRent);
-        if(rent != null){
-            Book book = rent.getBook();
-            book.setQuantity(book.getQuantity()+1);
-            iLibraryService.save(book);
-            this.iRentService.delete(rent);
-            return "redirect:/";
-        }else
-        {
-            return "redirect:/";
-        }
+    public String give(@RequestParam Long idRent,RedirectAttributes redirectAttributes) {
+        Rent rent = this.iRentService.findByCode(idRent);
+        this.iRentService.remove(rent);
+        this.iLibraryService.returnBook(rent.getBook());
+        return "redirect:/";
 
     }
 

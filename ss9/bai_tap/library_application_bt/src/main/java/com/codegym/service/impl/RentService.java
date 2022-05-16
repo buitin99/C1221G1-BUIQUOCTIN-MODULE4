@@ -23,13 +23,33 @@ public class RentService implements IRentService {
     }
 
     @Override
-    public Rent findById(Long idRent) {
-        Integer id = (int) (long) idRent;
-        return iRentRepository.findById(id).orElse(null);
+    public Rent findById(Integer idRent) {
+        return iRentRepository.findById(idRent).orElse(null);
     }
+
+//    @Override
+//    public Rent findById(Long idRent) {
+//        int id = (int) (long) idRent;
+//        return iRentRepository.findById(id).orElse(null);
+//    }
 
     @Override
     public void delete(Rent rent) {
+        iRentRepository.delete(rent);
+    }
+
+    @Override
+    public Rent findByCode(Long idRent) {
+        Rent rent = this.iRentRepository.findFirstByIdRent(idRent);
+        if(rent != null){
+            return rent;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public void remove(Rent rent) {
         iRentRepository.delete(rent);
     }
 

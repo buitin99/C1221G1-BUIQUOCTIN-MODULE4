@@ -14,4 +14,5 @@ public interface ILibraryService {
 
     void save(Book books);
 
+    void returnBook(Book book);
 }
