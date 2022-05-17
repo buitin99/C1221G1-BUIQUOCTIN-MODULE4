@@ -3,6 +3,7 @@ package com.codegym.service.impl;
 import com.codegym.model.Rent;
 import com.codegym.repository.IRentRepository;
 import com.codegym.service.IRentService;
+import com.codegym.utill.NotFindCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +18,7 @@ public class RentService implements IRentService {
 
     @Override
     public void save(Rent rent) {
-        Long idRandom = (long)(Math.floor( Math.random()*10000) + 99999);
+        Long idRandom = (long) (Math.floor(Math.random() * 10000) + 99999);
         rent.setIdRent(idRandom);
         iRentRepository.save(rent);
     }
@@ -39,12 +40,12 @@ public class RentService implements IRentService {
     }
 
     @Override
-    public Rent findByCode(Long idRent) {
+    public Rent findByCode(Long idRent) throws NotFindCode {
         Rent rent = this.iRentRepository.findFirstByIdRent(idRent);
-        if(rent != null){
+        if (rent != null) {
             return rent;
-        }else{
-            return null;
+        } else {
+            throw new NotFindCode();
         }
     }
 

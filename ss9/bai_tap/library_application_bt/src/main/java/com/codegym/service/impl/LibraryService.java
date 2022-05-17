@@ -29,11 +29,13 @@ public class LibraryService implements ILibraryService {
     }
 
     @Override
-    public void save(Book books) {
+    public void save(Book books) throws NullPointerException{
         if(books.getQuantity() > 0){
             books.setQuantity(books.getQuantity()-1);
+            iLibraryRepository.save(books);
+        }else{
+            throw new NullPointerException();
         }
-        iLibraryRepository.save(books);
     }
 
     @Override

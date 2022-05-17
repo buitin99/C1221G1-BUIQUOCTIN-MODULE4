@@ -4,11 +4,13 @@ import com.codegym.model.Book;
 import com.codegym.model.Rent;
 import com.codegym.service.ILibraryService;
 import com.codegym.service.IRentService;
+import com.codegym.utill.NotFindCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -48,13 +50,15 @@ public class LibraryController {
     }
 
     @PostMapping(value = "/give")
-    public String give(@RequestParam Long idRent,RedirectAttributes redirectAttributes) {
+    public String give(@RequestParam Long idRent,RedirectAttributes redirectAttributes) throws NotFindCode {
         Rent rent = this.iRentService.findByCode(idRent);
         this.iRentService.remove(rent);
         this.iLibraryService.returnBook(rent.getBook());
         return "redirect:/";
-
     }
 
-
+    @ExceptionHandler(NotFindCode.class)
+    public ModelAndView showInputNotAcceptable() {
+        return new ModelAndView("notfound");
+    }
 }
