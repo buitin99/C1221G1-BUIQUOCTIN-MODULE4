@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>layout</title>
+</head>
+<body>
+<!--<th:block th:replace="~{layout :: top-bootstrap}"></th:block>-->
+<!--<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>-->
+<th:block th:fragment="top-bootstrap">
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+<th:block th:fragment="bot-bootstrap">
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"
+    ></script>
+</th:block>
+<table class="table">
+    <thead class="table-dark p-3">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" th:if="${productList.hasPrevious()}"
+               th:href="@{/list(page=${productList.number - 1}, keyword=${keywordVal1},keyword=${keywordVal2},keyword=${keywordVal3})}">Previous</a>
+        </li>
+        <li class="page-link">
+            <span th:text="${productList.number + 1}"></span>
+            /
+            <span th:text="${productList.totalPages}"></span>
+        </li>
+        <li class="page-item">
+            <a class="page-link" th:if="${productList.hasNext()}"
+               th:href="@{/list(page=${productList.number + 1}, keyword=${keywordVal1},keyword=${keywordVal2},keyword=${keywordVal3})}">Next</a>
+        </li>
+    </ul>
+</nav>
+<div class="w-50 my-4 shadow-2-strong mx-auto p-4">
+    <h1 class="text-center text-secondary">Create New Song</h1>
+    <form th:action="@{/create}" th:object="${songDto}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-outline my-4">
+            <input type="text" id="nameSong" class="form-control" th:field="*{nameSong}"/>
+            <label class="form-label" for="nameSong">Name Song: </label>
+        </div>
+        <p th:if="${#fields.hasErrors('nameSong')}" th:errors="*{nameSong}" style="color: red"></p>
+        <div class="form-outline my-4">
+            <input type="text" id="nameSinger" class="form-control" th:field="*{nameSinger}"/>
+            <label class="form-label" for="nameSinger">Name Singer: </label>
+        </div>
+        <p th:if="${#fields.hasErrors('nameSinger')}" th:errors="*{nameSinger}" style="color: red"></p>
+
+        <div class="form-outline my-4">
+            <input type="text" id="typeSong" class="form-control" th:field="*{typeSong}"/>
+            <label class="form-label" for="typeSong">Type Song: </label>
+        </div>
+        <p th:if="${#fields.hasErrors('typeSong')}" th:errors="*{typeSong}" style="color: red"></p>
+        <div class="my-4 text-center">
+            <input class="btn btn-warning me-4" type="reset" value="cancel">
+            <button type="submit" class="btn btn-success ms-4">Create</button>
+        </div>
+        <div class="my-4 text-center">
+            <a th:href="@{/view}" class="btn btn-light">Back to Song List</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
