@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Detail Blog</h2>
+    <div>
+        Name:
+        <th:block th:text="${blog.id}"></th:block>
+    </div>
+    <div>
+        Describer:
+        <th:block th:text="${blog.describer}"></th:block>
+    </div>
+    <div>
+        Author:
+        <th:block th:text="${blog.author}"></th:block>
+    </div>
+    <div>
+        Content:
+        <th:block th:text="${blog.content}"></th:block>
+    </div>
+    <div>
+        Category:
+        <th:block th:text="${blog.category.type}"></th:block>
+    </div>
+</body>
+</html>
