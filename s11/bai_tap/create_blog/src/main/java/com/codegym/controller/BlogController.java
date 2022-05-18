@@ -21,8 +21,11 @@ public class BlogController {
     @Autowired
     private IBlogService iBlogService;
 
+//    @Autowired
+//    private ICategoryService iCategoryService;
+
     @Autowired
-    private ICategoryService iCategoryService;
+    private CategoryController categoryController;
 
     @GetMapping(value = "/list")
     public ResponseEntity<Page<Blog>> getPageBlog(@PageableDefault(value = 2) Pageable pageable) {
@@ -34,14 +37,14 @@ public class BlogController {
         return new ResponseEntity<>(blogPage, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/list_category")
-    public ResponseEntity<Page<Category>> getPageCategory(@PageableDefault(value = 2) Pageable pageable) {
-        Page<Category> categoryPage = this.iCategoryService.findAllPaging(pageable);
-        if (!categoryPage.hasContent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(categoryPage, HttpStatus.OK);
-    }
+//    @GetMapping(value = "/list_category")
+//    public ResponseEntity<Page<Category>> getPageCategory(@PageableDefault(value = 2) Pageable pageable) {
+//        Page<Category> categoryPage = this.iCategoryService.findAllPaging(pageable);
+//        if (!categoryPage.hasContent()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(categoryPage, HttpStatus.OK);
+//    }
 
     @GetMapping(value = "/detail")
     public ResponseEntity<Blog> getDetailBlog(@RequestParam Integer id) {
@@ -54,7 +57,7 @@ public class BlogController {
 
     @GetMapping(value = "/list_category_blog")
     public ResponseEntity<List<Blog>> getListBlogByIdCategory(@RequestParam Integer id) {
-        Category category = iCategoryService.findById(id);
+        Category category = categoryController.findById(id);
         if (category == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
