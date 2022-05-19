@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create student momo</title>
+    <link rel="stylesheet" href="css/mdb.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row w-50 mx-auto">
+            <div class="col-lg-12">
+                <h2>Create student other</h2>
+                <div>
+                    <p style="color: red" id="pError"></p>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="inputName" class="form-control" />
+                    <label class="form-label" for="inputName">Name</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="date" id="inputDateOfBirth" class="form-control" />
+                </div>
+
+                <select id="selectClass" class="form-control mb-4">
+                    <option value="1">C1221G1</option>
+                    <option value="2">C0222G1</option>
+                    <option value="3">C0222G2</option>
+                </select>
+
+                <button id="btnCreate" type="button" class="btn btn-primary btn-block">
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/mdb.min.js"></script>
+    <script>
+        $("#btnCreate").click(function() {
+            let inputName = $("#inputName").val();
+            let inputDOB = $("#inputDateOfBirth").val();
+            let selectClass = $("#selectClass").val();
+
+            let studentObj = {
+                "name": inputName,
+                "dateOfBirth": inputDOB,
+                "classCGDto": {
+                    "id": selectClass
+                }
+            }
+
+            console.log(studentObj);
+
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST", //GET, DELETE, PUT...
+                url: "http://localhost:8080/studentRest/create",
+                data: JSON.stringify(studentObj),
+                success: function(resultSuccess){
+                    alert("OK");
+                },
+                error: function(resultError) {
+                    console.log(resultError);
+                    $("#pError").text(resultError.responseJSON[0].defaultMessage);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
