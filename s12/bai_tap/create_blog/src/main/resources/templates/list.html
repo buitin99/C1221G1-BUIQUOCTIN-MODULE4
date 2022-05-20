@@ -63,6 +63,7 @@
     let curPage = 0;
     let keyword = "";
 
+
     function getPageStudent(pageNumber,keyword) {
         $.ajax({
             headers: {
@@ -91,6 +92,7 @@
                     // }
 
                     let count = 1;
+
                     for (let blogs of blogPage.content) {
                             outHTML += `<tr>
                                     <td>${count++}</td>
@@ -130,6 +132,7 @@
         curPage++;
         getPageStudent(curPage,keyword);
     })
+
 
     $("#aPrevious").click(function () {
         if (curPage != 0) {

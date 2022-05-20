@@ -6,6 +6,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
 
+        $(document).ready(function () {
+            listenToEdit();
+        });
+
         function addNewSmartPhone() {
             //lay du lieu
             let producer = $('#producer').val();
@@ -34,33 +38,32 @@
             event.preventDefault();
         }
 
-        function updateSmartPhone() {
-            //lay du lieu
+        function editSmartPhone() {
             let producer = $('#producer').val();
             let model = $('#model').val();
             let price = $('#price').val();
+            let id = $('#idInput').val();
             let newSmartphone = {
                 producer: producer,
                 model: model,
                 price: price
             };
-            // goi ajax
             $.ajax({
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                type: "POST",
+                type: "PATCH",
                 data: JSON.stringify(newSmartphone),
-                //tên API
-                url: "/smartphones",
-                //xử lý khi thành công
+                url: "/smartphones/" + id,
                 success: successHandler
-
             });
-            //chặn sự kiện mặc định của thẻ
+            $('#addBtn').prop('disabled', false);
+            $('#editBtn').prop('disabled', true);
+            $('#idInput').prop('disabled', true).val(null);
             event.preventDefault();
         }
+
 
         function successHandler() {
             $.ajax({
@@ -90,9 +93,20 @@
                 `<td><a class="deleteSmartphone" href="${smartphone.id}">Delete</a></td></tr>`;
         }
 
-        function getSmartPhoneUpdate(smartphone) {
-            `<tr><td >${smartphone.producer}</td><td >${smartphone.model}</td><td >${smartphone.price}</td>` +
-            `<td><a class="updateSmartphone" href="${smartphone.id}">Update</a></td></tr>`;
+        function listenToEdit() {
+            $('.editSmartphone').click(function (event) {
+                event.preventDefault();
+                let a = $(this);
+                let smartphoneId = a.attr("href");
+                $('#producer').val(a.parent().parent().children().eq(0).text());
+                $('#model').val(a.parent().parent().children().eq(1).text());
+                $('#price').val(a.parent().parent().children().eq(2).text());
+                $('#addBtn').prop('disabled', true);
+                $('#editBtn').prop('disabled', false);
+                $('#idInput').removeAttr('disabled').val(smartphoneId)
+
+
+            });
         }
 
         $(document).ready(function () {
@@ -121,6 +135,7 @@
 <body>
 <form id="add-smartphone">
     <table>
+        <input type="hidden" name="id" disabled id="idInput">
         <tr>
             <td>Producer:</td>
             <td><input type="text" id="producer" placeholder="producer"></td>
@@ -135,7 +150,10 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+            <td>
+                <input type="submit" id="addBtn" value="Add" onclick="addNewSmartPhone()">
+                <input disabled type="submit" id="editBtn" value="Edit" onclick="editSmartPhone()">
+            </td>
         </tr>
     </table>
 </form>
@@ -153,7 +171,7 @@
             <td th:text="${smartphone.producer}"></td>
             <td th:text="${smartphone.model}"></td>
             <td th:text="${smartphone.price}"></td>
-            <td><a class="updateSmartphone" th:href="${smartphone.getId()}">Update</a></td>
+            <td><a class="editSmartphone" th:href="${smartphone.getId()}">Edit</a></td>
             <td><a class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</a></td>
         </tr>
     </th:block>
