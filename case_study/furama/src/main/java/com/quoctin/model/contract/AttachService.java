@@ -13,7 +13,6 @@ public class AttachService {
     private String attachServiceName;
     @Column(columnDefinition = "DOUBLE")
     private String attachServiceCost;
-    @Column(columnDefinition = "INT")
     private String attachServiceUnit;
     private String attachServiceStatus;
 

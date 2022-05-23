@@ -15,7 +15,7 @@ public class RentType {
     private String rentTypeCost;
 
     @OneToMany(mappedBy = "rentType")
-    private List<Facility> serviceList;
+    private List<Facility> facilityList;
 
     public RentType() {
     }
@@ -44,11 +44,11 @@ public class RentType {
         this.rentTypeCost = rentTypeCost;
     }
 
-    public List<Facility> getServiceList() {
-        return serviceList;
+    public List<Facility> getFacilityList() {
+        return facilityList;
     }
 
-    public void setServiceList(List<Facility> serviceList) {
-        this.serviceList = serviceList;
+    public void setFacilityList(List<Facility> facilityList) {
+        this.facilityList = facilityList;
     }
 }

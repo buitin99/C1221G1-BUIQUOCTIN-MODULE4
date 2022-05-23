@@ -32,7 +32,7 @@ public class Facility {
 
     @ManyToOne
     @JoinColumn(name = "service_type_id",referencedColumnName = "serviceTypeId")
-    private FacilityType serviceType;
+    private FacilityType facilityType;
 
     @OneToMany(mappedBy = "facility")
     private List<Contract> contractList;
@@ -120,13 +120,13 @@ public class Facility {
         this.rentType = rentType;
     }
 
-    public FacilityType getServiceType() {
-        return serviceType;
-    }
-
-    public void setServiceType(FacilityType serviceType) {
-        this.serviceType = serviceType;
-    }
+//    public FacilityType getServiceType() {
+//        return serviceType;
+//    }
+//
+//    public void setServiceType(FacilityType serviceType) {
+//        this.serviceType = serviceType;
+//    }
 
     public List<Contract> getContractList() {
         return contractList;

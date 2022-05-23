@@ -12,8 +12,8 @@ public class FacilityType {
     private Integer serviceTypeId;
     private String serviceTypeName;
 
-    @OneToMany(mappedBy = "serviceType")
-    private List<Facility> serviceList;
+    @OneToMany(mappedBy = "facilityType")
+    private List<Facility> facilityList;
 
     public FacilityType() {
     }
@@ -34,11 +34,11 @@ public class FacilityType {
         this.serviceTypeName = serviceTypeName;
     }
 
-    public List<Facility> getServiceList() {
-        return serviceList;
+    public List<Facility> getFacilityList() {
+        return facilityList;
     }
 
-    public void setServiceList(List<Facility> serviceList) {
-        this.serviceList = serviceList;
+    public void setFacilityList(List<Facility> serviceList) {
+        this.facilityList = serviceList;
     }
 }

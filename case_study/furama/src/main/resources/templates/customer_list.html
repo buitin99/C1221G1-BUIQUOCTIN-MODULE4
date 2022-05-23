@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Date Of Birth</td>
+        <td>Gender</td>
+        <td>Id Card</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>Address</td>
+        <td>Type</td>
+    </tr>
+    <tr th:each="customers : ${customer}">
+        <td th:text="${customers.customerName}"></td>
+        <td th:text="${customers.customerBirth}"></td>
+        <th:block th:if="${customers.customerGender == '0'}">
+            <td th:text="female"></td>
+        </th:block>
+        <th:block th:if="${customers.customerGender == '1'}">
+            <td th:text="male"></td>
+        </th:block>
+        <td th:text="${customers.customerIdCard}"></td>
+        <td th:text="${customers.customerPhone}"></td>
+        <td th:text="${customers.customerEmail}"></td>
+        <td th:text="${customers.customerAddress}"></td>
+        <td th:text="${customers.customerType.customerTypeName}"></td>
+        <!--        <td><a th:href="@{/update(id=${blogs.id})}">Update Blog</a></td>-->
+        <!--        <td><a th:href="@{/delete(id=${blogs.id})}">Delete Blog</a></td>-->
+        <!--        <td>-->
+        <!--            <button-->
+        <!--                    th:attr="onclick=|deleteModal('${customer.id}', '${customer.name}')|"-->
+        <!--                    type="button" class="btn btn-danger" data-toggle="modal"-->
+        <!--                    data-target="#exampleModalCenter">-->
+        <!--                Delete-->
+        <!--            </button>-->
+        <!--        </td>-->
+        <!--        <td><a th:href="@{/detail(id=${blogs.id})}">Detail</a></td>-->
+        <!--    </tr>-->
+</table>
+<!--<div>-->
+<!--    <a th:if="${customers.hasPrevious()}"-->
+<!--       th:href="@{/(page=${customers.number - 1 })}">-->
+<!--        Previous-->
+<!--    </a>-->
+<!--    <span th:text="${customers.number +1 }"></span>/<span th:text="${customers.totalPages}"></span>-->
+<!--    &lt;!&ndash;    <a th:if="${blogLists.hasNext()}" th:href="@{/(page=${blogLists.number + 1 }, keywork=${keyworkVal})}">&ndash;&gt;-->
+<!--    &lt;!&ndash;        Next&ndash;&gt;-->
+<!--    &lt;!&ndash;    </a>&ndash;&gt;-->
+<!--    <a th:if="${customers.hasNext()}" th:href="@{/(page=${customers.number + 1 })}">-->
+<!--        Next-->
+<!--    </a>-->
+<!--</div>-->
+</body>
+</html>

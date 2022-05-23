@@ -1,37 +1,28 @@
-package com.quoctin.model.customer;
+package com.quoctin.dto;
 
 import com.quoctin.model.contract.Contract;
+import com.quoctin.model.customer.CustomerType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
-@Table(name = "customer")
-public class Customer {
+public class CustomerDto implements Validator {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
     private String customerName;
-    @Column(columnDefinition = "DATETIME")
     private String customerBirth;
-    @Column(columnDefinition = "BIT")
     private String customerGender;
     private String customerIdCard;
     private String customerPhone;
-    @Column(columnDefinition = "LONGTEXT")
     private String customerEmail;
-    @Column(columnDefinition = "LONGTEXT")
     private String customerAddress;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_type_id",referencedColumnName = "customerTypeId")
     private CustomerType customerType;
-
-    @OneToMany(mappedBy = "customer")
     private List<Contract> contractList;
 
-    public Customer() {
+    public CustomerDto() {
     }
 
     public Integer getCustomerId() {
@@ -112,5 +103,15 @@ public class Customer {
 
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }
