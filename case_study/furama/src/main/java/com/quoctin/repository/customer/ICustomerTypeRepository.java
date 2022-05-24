@@ -1,4 +1,4 @@
-package com.quoctin.repository;
+package com.quoctin.repository.customer;
 
 import com.quoctin.model.customer.CustomerType;
 import org.springframework.data.jpa.repository.JpaRepository;

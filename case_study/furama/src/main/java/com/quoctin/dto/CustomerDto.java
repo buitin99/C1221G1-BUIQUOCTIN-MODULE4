@@ -2,6 +2,7 @@ package com.quoctin.dto;
 
 import com.quoctin.model.contract.Contract;
 import com.quoctin.model.customer.CustomerType;
+import com.sun.istack.NotNull;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -12,10 +13,15 @@ import java.util.List;
 public class CustomerDto implements Validator {
 
     private Integer customerId;
+    @NotNull
     private String customerName;
+    @NotNull
     private String customerBirth;
+    @NotNull
     private String customerGender;
+    @NotNull
     private String customerIdCard;
+    @NotNull
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
@@ -112,6 +118,6 @@ public class CustomerDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
+        CustomerDto customerDto = (CustomerDto) target;
     }
 }

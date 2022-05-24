@@ -1,4 +1,4 @@
-package com.quoctin.service;
+package com.quoctin.service.icustomer;
 
 import com.quoctin.model.customer.CustomerType;
 

@@ -1,8 +1,8 @@
-package com.quoctin.service.impl;
+package com.quoctin.service.impl.customer;
 
 import com.quoctin.model.customer.Customer;
-import com.quoctin.repository.ICustomerRepository;
-import com.quoctin.service.ICustomerService;
+import com.quoctin.repository.customer.ICustomerRepository;
+import com.quoctin.service.icustomer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,5 +22,10 @@ public class CustomerService implements ICustomerService {
     @Override
     public void save(Customer customer) {
         iCustomerRepository.save(customer);
+    }
+
+    @Override
+    public Customer findById(int id) {
+        return iCustomerRepository.findById(id).orElse(null);
     }
 }

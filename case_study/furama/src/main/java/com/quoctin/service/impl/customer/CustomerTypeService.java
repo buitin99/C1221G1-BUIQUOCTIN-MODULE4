@@ -1,8 +1,8 @@
-package com.quoctin.service.impl;
+package com.quoctin.service.impl.customer;
 
 import com.quoctin.model.customer.CustomerType;
-import com.quoctin.repository.ICustomerTypeRepository;
-import com.quoctin.service.ICustomerTypeService;
+import com.quoctin.repository.customer.ICustomerTypeRepository;
+import com.quoctin.service.icustomer.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
