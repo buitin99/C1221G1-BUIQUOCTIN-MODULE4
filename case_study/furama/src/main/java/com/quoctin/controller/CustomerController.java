@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping({"/customer"})
@@ -35,9 +36,30 @@ public class CustomerController {
     }
 
 
+    //    @GetMapping(value = "/list")
+//    public String getCustomerPage(Model model, @PageableDefault(value = 14) Pageable pageable) {
+//        Page<Customer> customerPage = this.iCustomerService.findAllPaging(pageable);
+//        model.addAttribute("customer", customerPage);
+//        return "customer/customer_list";
+//    }
     @GetMapping(value = "/list")
-    public String getCustomerPage(Model model, @PageableDefault(value = 14) Pageable pageable) {
-        Page<Customer> customerPage = this.iCustomerService.findAllPaging(pageable);
+    public String searchCustomer(@RequestParam("name") Optional<String> name,
+                                 @RequestParam("phone") Optional<String> phone,
+                                 @RequestParam("type") Optional<String> type,
+                                 Model model) {
+        String nameSearch = name.orElse("");
+        String phoneSearch = phone.orElse("");
+        String typeSearch = type.orElse("");
+//        if(type.isPresent()){
+//            if("-1".equals(type.get())){
+//                typeSearch = "";
+//            }else{
+//                typeSearch= type.get();
+//            }
+//        }else{
+//            typeSearch="";
+//        }
+        List<Customer> customerPage = this.iCustomerService.search(nameSearch, phoneSearch, typeSearch);
         model.addAttribute("customer", customerPage);
         return "customer/customer_list";
     }
@@ -45,7 +67,7 @@ public class CustomerController {
     @GetMapping("/create")
     public String showCreateCustomer(Model model) {
         model.addAttribute("customerDto", new CustomerDto());
-        return "customer/create_customer";
+        return "customer/customer_create";
     }
 
     @PostMapping("/create")
@@ -53,7 +75,7 @@ public class CustomerController {
                                  RedirectAttributes redirectAttributes, Model model) {
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            return "customer/create_customer";
+            return "customer/customer_create";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
@@ -65,19 +87,26 @@ public class CustomerController {
     @GetMapping(value = "/update")
     public String showUpdateCustomer(Model model, @RequestParam int id) {
         model.addAttribute("customerDto", this.iCustomerService.findById(id));
-        return "customer/update_customer";
+        return "customer/customer_update";
     }
 
     @PostMapping(value = "/update")
     public String updateCustomer(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasFieldErrors()) {
-            return "customer/update_customer";
+            return "customer/customer_update";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             iCustomerService.save(customer);
             return "redirect:list";
         }
+    }
+
+    @RequestMapping(value = "/delete")
+    public String deleteCustomer(@RequestParam Integer id){
+        Customer customer = iCustomerService.findById(id);
+        iCustomerService.delete(customer);
+        return "redirect:list";
     }
 
 }

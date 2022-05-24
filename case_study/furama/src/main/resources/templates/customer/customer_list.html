@@ -7,6 +7,41 @@
     <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
+<h1 style="text-align: center">Customer List</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form action="/customer/list" method="get">
+            <h3>Search</h3>
+            <!-- Name input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form1Example1" class="form-control" name="name"/>
+                <label class="form-label" for="form1Example1">Name Search</label>
+            </div>
+            <!-- Phone input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form1Example2" class="form-control" name="phone"/>
+                <label class="form-label" for="form1Example2">Phone Search</label>
+            </div>
+            <div>
+                <td>
+                    <div class="ms-3">
+                        <select  name="type">
+                            <option value="">select</option>
+                            <option th:each="c : ${customerType}" th:value="${c.customerTypeId}"
+                                    th:text="${c.customerTypeName}"></option>
+                        </select>
+                    </div>
+                </td>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+
 <table class="table align-middle mb-0 bg-white">
     <thead class="bg-light">
     <tr>
@@ -19,6 +54,7 @@
         <th>Address</th>
         <th>Type</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -38,12 +74,12 @@
         <td>
             <div class="ms-3">
                 <th:block th:if="${customers.customerGender == '0'}">
-        <p th:text="female"></p>
-        </th:block>
-        <th:block th:if="${customers.customerGender == '1'}">
-            <p th:text="male"></p>
-        </th:block>
-        </div>
+                    <p th:text="female"></p>
+                </th:block>
+                <th:block th:if="${customers.customerGender == '1'}">
+                    <p th:text="male"></p>
+                </th:block>
+            </div>
         </td>
         <td>
             <div class="ms-3">
@@ -73,6 +109,11 @@
         <td>
             <div class="ms-3">
                 <a th:href="@{/customer/update(id=${customers.customerId})}">Update Customer</a>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <a th:href="@{/customer/delete(id=${customers.customerId})}">Delete Customer</a>
             </div>
         </td>
     </tr>

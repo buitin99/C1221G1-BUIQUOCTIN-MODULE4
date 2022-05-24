@@ -3,6 +3,7 @@ package com.quoctin.model.contract;
 import com.quoctin.model.service.Facility;
 import com.quoctin.model.customer.Customer;
 import com.quoctin.model.employee.Employees;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Name</th>
+        <th>Date Of Birth</th>
+        <th>Id Card</th>
+        <th>Salary</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Position</th>
+        <th>Education</th>
+        <th>Division</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employees : ${employee}">
+        <td>
+            <div class="d-flex align-items-center">
+                <div class="ms-3">
+                    <p class="fw-bold mb-1" th:text="${employees.employeeName}"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.employeeBirth}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.employeeIdCard}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.employeeSalary}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.employeePhone}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.employeeEmail}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.employeeAddress}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.position.positionName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.education.educationDegreeName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${employees.division.divisionName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <a th:href="@{/employee/update(id=${employees.employeeId})}">Update Employee</a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--<div>-->
+<!--    <a th:if="${customers.hasPrevious()}"-->
+<!--       th:href="@{/(page=${customers.number - 1 })}">-->
+<!--        Previous-->
+<!--    </a>-->
+<!--    <span th:text="${customers.number +1 }"></span>/<span th:text="${customers.totalPages}"></span>-->
+<!--    &lt;!&ndash;    <a th:if="${blogLists.hasNext()}" th:href="@{/(page=${blogLists.number + 1 }, keywork=${keyworkVal})}">&ndash;&gt;-->
+<!--    &lt;!&ndash;        Next&ndash;&gt;-->
+<!--    &lt;!&ndash;    </a>&ndash;&gt;-->
+<!--    <a th:if="${customers.hasNext()}" th:href="@{/(page=${customers.number + 1 })}">-->
+<!--        Next-->
+<!--    </a>-->
+<!--</div>-->
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>
