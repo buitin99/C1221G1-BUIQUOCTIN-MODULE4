@@ -78,7 +78,7 @@ public class EmployeeController {
             Employees employees = new Employees();
             BeanUtils.copyProperties(employeeDto, employees);
             iEmployeeService.save(employees);
-            return "redirect:employee/list";
+            return "redirect:list";
         }
     }
 

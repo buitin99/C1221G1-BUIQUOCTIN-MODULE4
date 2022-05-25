@@ -36,9 +36,10 @@ public class CustomerService implements ICustomerService {
         return iCustomerRepository.search("%" + nameSearch  + "%","%" + phoneSearch + "%" ,"%" +  typeSearch + "%");
     }
 
+
     @Override
-    public void delete(Customer customer) {
-        iCustomerRepository.delete(customer);
+    public void updateFlag(Integer id) {
+        iCustomerRepository.updateFlag(id);
     }
 
 

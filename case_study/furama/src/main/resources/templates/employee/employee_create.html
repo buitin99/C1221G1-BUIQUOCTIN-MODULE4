@@ -1,10 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
 
+<form th:object="${employeeDto}" method="post">
+    <div class="row" style="
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp');
+    height: 100vh;
+  ">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1 style="text-align: center">Create Employee</h1>
+            <table>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form12" class="form-control" th:field="*{employeeName}">
+                        <label class="form-label" for="form12">Name Employee</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="date" id="form11" class="form-control" th:field="*{employeeBirth}">
+                        <label class="form-label" for="form11">DOB Employee</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form10" class="form-control" th:field="*{employeeIdCard}">
+                        <label class="form-label" for="form10">ID Card Employee</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form7" class="form-control" th:field="*{employeeSalary}">
+                        <label class="form-label" for="form7">Salary Employee</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form8" class="form-control" th:field="*{employeePhone}">
+                        <label class="form-label" for="form8">Phone Employee</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form6" class="form-control" th:field="*{employeeEmail}">
+                        <label class="form-label" for="form6">Email Customer</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form5" class="form-control" th:field="*{employeeAddress}">
+                        <label class="form-label" for="form5">Address employee</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>Employee Education</tr>
+                <br>
+                <tr>
+                    <select th:field="*{education}">
+                        <option th:each="e : ${education}" th:value="${e.educationDegreeId}"
+                                th:text="${e.educationDegreeName}"></option>
+                    </select>
+                </tr>
+                <tr>Employee Position</tr>
+                <br>
+                <tr>
+                    <select th:field="*{position}">
+                        <option th:each="p : ${position}" th:value="${p.positionId}"
+                                th:text="${p.positionName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Employee Division</tr>
+                <br>
+                <tr>
+                    <select th:field="*{division}">
+                        <option th:each="d : ${division}" th:value="${d.divisionId}"
+                                th:text="${d.divisionName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>
+                    <button type="submit" class="btn btn-primary">Create</button>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 </body>
 </html>

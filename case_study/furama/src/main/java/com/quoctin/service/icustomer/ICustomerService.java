@@ -16,5 +16,6 @@ public interface ICustomerService {
 
     List<Customer> search(String nameSearch, String phoneSearch, String typeSearch);
 
-    void delete(Customer customer);
+
+    void updateFlag(Integer id);
 }

@@ -23,6 +23,8 @@ public class Customer {
     private String customerEmail;
     @Column(columnDefinition = "LONGTEXT")
     private String customerAddress;
+    @Column(columnDefinition = "BIT")
+    private Integer flag;
 
     @ManyToOne
     @JoinColumn(name = "customer_type_id",referencedColumnName = "customerTypeId")
@@ -112,5 +114,13 @@ public class Customer {
 
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }

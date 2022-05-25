@@ -102,10 +102,10 @@ public class CustomerController {
         }
     }
 
+
     @RequestMapping(value = "/delete")
     public String deleteCustomer(@RequestParam Integer id){
-        Customer customer = iCustomerService.findById(id);
-        iCustomerService.delete(customer);
+        iCustomerService.updateFlag(id);
         return "redirect:list";
     }
 
