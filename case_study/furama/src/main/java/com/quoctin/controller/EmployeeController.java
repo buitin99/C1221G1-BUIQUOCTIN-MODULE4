@@ -56,7 +56,7 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/list")
-    public String getEmployeePage(Model model, @PageableDefault(value = 14) Pageable pageable) {
+    public String getEmployeePage(Model model, @PageableDefault(value = 4) Pageable pageable) {
         Page<Employees> employeesPage = this.iEmployeeService.findAllPaging(pageable);
         model.addAttribute("employee", employeesPage);
         return "employee/employee_list";

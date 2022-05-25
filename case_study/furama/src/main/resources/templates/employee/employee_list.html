@@ -85,19 +85,16 @@
     </tr>
     </tbody>
 </table>
-<!--<div>-->
-<!--    <a th:if="${customers.hasPrevious()}"-->
-<!--       th:href="@{/(page=${customers.number - 1 })}">-->
-<!--        Previous-->
-<!--    </a>-->
-<!--    <span th:text="${customers.number +1 }"></span>/<span th:text="${customers.totalPages}"></span>-->
-<!--    &lt;!&ndash;    <a th:if="${blogLists.hasNext()}" th:href="@{/(page=${blogLists.number + 1 }, keywork=${keyworkVal})}">&ndash;&gt;-->
-<!--    &lt;!&ndash;        Next&ndash;&gt;-->
-<!--    &lt;!&ndash;    </a>&ndash;&gt;-->
-<!--    <a th:if="${customers.hasNext()}" th:href="@{/(page=${customers.number + 1 })}">-->
-<!--        Next-->
-<!--    </a>-->
-<!--</div>-->
+<div>
+    <a th:if="${employee.hasPrevious()}"
+       th:href="@{/employee/list(page=${employee.number - 1 })}">
+        Previous
+    </a>
+    <span th:text="${employee.number +1 }"></span>/<span th:text="${employee.totalPages}"></span>
+    <a th:if="${employee.hasNext()}" th:href="@{/employee/list(page=${employee.number + 1 })}">
+        Next
+    </a>
+</div>
 <th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 </body>
 </html>

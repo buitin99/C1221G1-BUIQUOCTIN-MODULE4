@@ -49,7 +49,7 @@ public class FacilityController {
 
 
     @GetMapping(value = "/list")
-    public String getEmployeePage(Model model, @PageableDefault(value = 14) Pageable pageable) {
+    public String getEmployeePage(Model model, @PageableDefault(value = 2) Pageable pageable) {
         Page<Facility> facilityPage = this.iFacilityService.findAllPaging(pageable);
         model.addAttribute("facility", facilityPage);
         return "facility/facility_list";

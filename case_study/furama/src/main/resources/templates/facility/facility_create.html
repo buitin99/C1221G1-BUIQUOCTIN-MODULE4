@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
 
+<form th:object="${facilityDto}" method="post">
+    <div class="row" style="
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp');
+    height: 100vh;
+  ">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1 style="text-align: center">Create Facility</h1>
+            <table>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form12" class="form-control" th:field="*{serviceName}">
+                        <label class="form-label" for="form12">Name Service</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form11" class="form-control" th:field="*{serviceArea}">
+                        <label class="form-label" for="form11">Area Service</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form10" class="form-control" th:field="*{serviceCost}">
+                        <label class="form-label" for="form10">Service Cost</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form9" class="form-control" th:field="*{serviceMaxPeople}">
+                        <label class="form-label" for="form9">Max People</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form8" class="form-control" th:field="*{standardRoom}">
+                        <label class="form-label" for="form8">Standard Room</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form7" class="form-control" th:field="*{descriptionOtherConvenience}">
+                        <label class="form-label" for="form7">Description</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form6" class="form-control" th:field="*{poolArea}">
+                        <label class="form-label" for="form6">Pool Area</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form5" class="form-control" th:field="*{numberOfFloor}">
+                        <label class="form-label" for="form5">Description</label>
+                    </div>
+                </tr>
+                <br>
+                <tr>Rent Type</tr>
+                <br>
+                <tr>
+                    <select th:field="*{rentType}">
+                        <option th:each="r : ${rentType}" th:value="${r.rentTypeId}"
+                                th:text="${r.rentTypeName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Rent Type</tr>
+                <tr>
+                    <select th:field="*{facilityType}">
+                        <option th:each="f : ${facilityType}" th:value="${f.serviceTypeId}"
+                                th:text="${f.serviceTypeName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>
+                    <button type="submit" class="btn btn-primary">Create</button>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 </body>
 </html>
