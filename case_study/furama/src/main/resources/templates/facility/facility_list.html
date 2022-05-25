@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h1 style="text-align: center">Facility List</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <!--        <form action="/customer/list" method="get">-->
+        <!--            <h3>Search</h3>-->
+        <!--            &lt;!&ndash; Name input &ndash;&gt;-->
+        <!--            <div class="form-outline mb-4">-->
+        <!--                <input type="text" id="form1Example1" class="form-control" name="name"/>-->
+        <!--                <label class="form-label" for="form1Example1">Name Search</label>-->
+        <!--            </div>-->
+        <!--            &lt;!&ndash; Phone input &ndash;&gt;-->
+        <!--            <div class="form-outline mb-4">-->
+        <!--                <input type="text" id="form1Example2" class="form-control" name="phone"/>-->
+        <!--                <label class="form-label" for="form1Example2">Phone Search</label>-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--                <td>-->
+        <!--                    <div class="ms-3">-->
+        <!--                        <select  name="type">-->
+        <!--                            <option value="">select</option>-->
+        <!--                            <option th:each="c : ${customerType}" th:value="${c.customerTypeId}"-->
+        <!--                                    th:text="${c.customerTypeName}"></option>-->
+        <!--                        </select>-->
+        <!--                    </div>-->
+        <!--                </td>-->
+        <!--            </div>-->
+
+        <!--            &lt;!&ndash; Submit button &ndash;&gt;-->
+        <!--            <button type="submit" class="btn btn-primary btn-block">Search</button>-->
+        <!--        </form>-->
+    </div>
+    <div class="col-3"></div>
+</div>
+
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Facility Name</th>
+        <th>Facility Area</th>
+        <th>Facility Cost</th>
+        <th>Facility Max People</th>
+        <th>Facility Standard Room</th>
+        <th>Facility Description</th>
+        <th>Facility Pool Area</th>
+        <th>Facility Number Of Floor</th>
+        <th>Facility Rent Type</th>
+        <th>Facility Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="facilitys : ${facility}">
+        <td>
+            <div class="d-flex align-items-center">
+                <div class="ms-3">
+                    <p class="fw-bold mb-1" th:text="${facilitys.serviceName}"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.serviceArea}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.serviceCost}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.serviceMaxPeople}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.standardRoom}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.descriptionOtherConvenience}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.poolArea}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.numberOfFloor}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.rentType.rentTypeName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${facilitys.facilityType.serviceTypeName}"></p>
+            </div>
+        </td>
+        <!--        <td>-->
+        <!--            <div class="ms-3">-->
+        <!--                <a th:href="@{/customer/update(id=${customers.customerId})}">Update Customer</a>-->
+        <!--            </div>-->
+        <!--        </td>-->
+        <!--        <td>-->
+        <!--            <div class="ms-3">-->
+        <!--                <a th:href="@{/customer/delete(id=${customers.customerId})}">Delete Customer</a>-->
+        <!--            </div>-->
+        <!--        </td>-->
+    </tr>
+    </tbody>
+</table>
+<!--<div>-->
+<!--    <a th:if="${customers.hasPrevious()}"-->
+<!--       th:href="@{/(page=${customers.number - 1 })}">-->
+<!--        Previous-->
+<!--    </a>-->
+<!--    <span th:text="${customers.number +1 }"></span>/<span th:text="${customers.totalPages}"></span>-->
+<!--    &lt;!&ndash;    <a th:if="${blogLists.hasNext()}" th:href="@{/(page=${blogLists.number + 1 }, keywork=${keyworkVal})}">&ndash;&gt;-->
+<!--    &lt;!&ndash;        Next&ndash;&gt;-->
+<!--    &lt;!&ndash;    </a>&ndash;&gt;-->
+<!--    <a th:if="${customers.hasNext()}" th:href="@{/(page=${customers.number + 1 })}">-->
+<!--        Next-->
+<!--    </a>-->
+<!--</div>-->
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

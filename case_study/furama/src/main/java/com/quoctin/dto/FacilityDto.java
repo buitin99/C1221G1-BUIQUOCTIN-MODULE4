@@ -1,43 +1,33 @@
-package com.quoctin.model.service;
+package com.quoctin.dto;
 
 import com.quoctin.model.contract.Contract;
+import com.quoctin.model.service.FacilityType;
+import com.quoctin.model.service.RentType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
-public class Facility {
+public class FacilityDto implements Validator {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer serviceId;
     private String serviceName;
-    @Column(columnDefinition = "INT")
     private String serviceArea;
-    @Column(columnDefinition = "DOUBLE")
     private String serviceCost;
-    @Column(columnDefinition = "INT")
     private String serviceMaxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
-    @Column(columnDefinition = "DOUBLE")
     private String poolArea;
-    @Column(columnDefinition = "INT")
     private String numberOfFloor;
-
-
-    @ManyToOne
-    @JoinColumn(name = "rent_type_id",referencedColumnName = "rentTypeId")
     private RentType rentType;
-
-    @ManyToOne
-    @JoinColumn(name = "service_type_id",referencedColumnName = "serviceTypeId")
     private FacilityType facilityType;
-
-    @OneToMany(mappedBy = "facility")
     private List<Contract> contractList;
 
-    public Facility() {
+    public FacilityDto() {
     }
 
     public Integer getServiceId() {
@@ -134,5 +124,15 @@ public class Facility {
 
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

@@ -69,7 +69,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public String createCustomer(@ModelAttribute @Validated Employees employeeDto, BindingResult bindingResult,
+    public String createCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes, Model model) {
         new EmployeeDto().validate(employeeDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -99,7 +99,4 @@ public class EmployeeController {
             return "redirect:list";
         }
     }
-
-
-
 }
