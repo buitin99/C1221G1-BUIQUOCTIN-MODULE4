@@ -1,45 +1,39 @@
-package com.quoctin.model.contract;
+package com.quoctin.dto;
 
-import com.quoctin.model.service.Facility;
+import com.quoctin.model.contract.ContractDetail;
 import com.quoctin.model.customer.Customer;
 import com.quoctin.model.employee.Employees;
-import org.hibernate.annotations.Cascade;
+import com.quoctin.model.service.Facility;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
-@Entity
-@Table(name = "contract")
-public class Contract {
+public class ContractDto implements Validator {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer contractId;
-    @Column(columnDefinition = "DATETIME")
+    @NotBlank(message = "Không được để trống!")
     private String contractStartDate;
-    @Column(columnDefinition = "DATETIME")
+    @NotBlank(message = "Không được để trống!")
     private String contractEndDate;
-    @Column(columnDefinition = "DOUBLE")
+    @NotBlank(message = "Không được để trống!")
+    @Positive(message = "Số tiền phải là số dương!")
     private String contractDeposit;
-    @Column(columnDefinition = "DOUBLE")
+    @Positive(message = "Số tiền phải là số dương!")
+    @NotBlank(message = "Không được để trống!")
     private String contractTotalMoney;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id",referencedColumnName = "employeeId")
     private Employees employees;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id",referencedColumnName = "customerId")
     private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "service_id",referencedColumnName = "serviceId")
     private Facility facility;
-
-    @OneToMany(mappedBy = "contract")
     private List<ContractDetail> contractDetailList;
 
-    public Contract() {
+    public ContractDto() {
     }
 
     public Integer getContractId() {
@@ -98,13 +92,13 @@ public class Contract {
         this.customer = customer;
     }
 
-//    public Facility getService() {
-//        return service;
-//    }
-//
-//    public void setService(Facility service) {
-//        this.service = service;
-//    }
+    public Facility getFacility() {
+        return facility;
+    }
+
+    public void setFacility(Facility facility) {
+        this.facility = facility;
+    }
 
     public List<ContractDetail> getContractDetailList() {
         return contractDetailList;
@@ -114,11 +108,15 @@ public class Contract {
         this.contractDetailList = contractDetailList;
     }
 
-    public Facility getFacility() {
-        return facility;
+
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setFacility(Facility facility) {
-        this.facility = facility;
+    @Override
+    public void validate(Object target, Errors errors) {
+        ContractDto contractDto = (ContractDto) target;
     }
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+    </head>
+<body>
+
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Contract Start Date</th>
+        <th>Contract End Date</th>
+        <th>Contract Deposit</th>
+        <th>Contract Total Money</th>
+        <th>Employee</th>
+        <th>Customer</th>
+        <th>Facility</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contracts : ${contract}">
+        <td>
+            <div class="d-flex align-items-center">
+                <div class="ms-3">
+                    <p class="fw-bold mb-1" th:text="${contracts.contractStartDate}"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contracts.contractEndDate}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contracts.contractDeposit}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contracts.contractTotalMoney}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contracts.employees.employeeName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contracts.customer.customerName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contracts.facility.serviceName}"></p>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:if="${contract.hasPrevious()}"
+       th:href="@{/contract/list(page=${contract.number - 1 })}">
+        Previous
+    </a>
+    <span th:text="${contract.number +1 }"></span>/<span th:text="${contract.totalPages}"></span>
+    <a th:if="${contract.hasNext()}" th:href="@{/contract/list(page=${contract.number + 1 })}">
+        Next
+    </a>
+</div>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

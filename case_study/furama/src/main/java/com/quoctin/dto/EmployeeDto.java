@@ -10,16 +10,31 @@ import org.springframework.validation.Validator;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class EmployeeDto implements Validator {
 
     private Integer employeeId;
+    @NotBlank(message = "Tên không được để trống!")
     private String employeeName;
+    @NotBlank(message = "Ngày sinh không được để trống!")
     private String employeeBirth;
+    @NotBlank(message = "CMND không được để trống!")
+    @Pattern(regexp = "\\d{9}$",message = "Bạn đã nhập sai định dạng. Số CMND phải là số có 9 chữ số")
     private String employeeIdCard;
+    @Pattern(regexp = "/^\\d+$/",message = "Lương phải là số dương!")
     private String employeeSalary;
+    @NotBlank(message = "Số điện thoại không được để trống!")
+    @Pattern(regexp = "^(090|091|(84)+90|(84)+91)\\d{7}$",message = "Bạn đã nhập sai định dạng số điện thoại!")
+    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Số điện thoại này đã được đăng ký")
     private String employeePhone;
+    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Địa chỉ Email này đã được đăng ký")
+    @NotBlank(message = "Địa chỉ Email không được để trống!")
+    @Email(message = "Định đạng Email sai định dạng!")
     private String employeeEmail;
+    @NotBlank(message = "Địa chỉ không được để trống!")
     private String employeeAddress;
     private Position position;
     private Education education;

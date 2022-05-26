@@ -10,18 +10,28 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class FacilityDto implements Validator {
 
     private Integer serviceId;
+    @Pattern(regexp = "^DV-\\d{4}$",message = "Bạn đã nhập sai định dạng mã khách hàng. VD: DV-1234")
+    private String facilityCode;
+    @NotBlank(message = "Tên không được để trống!")
     private String serviceName;
+    @Pattern(regexp = "/^\\d+$/",message = "Diện tích phải là số dương!")
     private String serviceArea;
+    @Pattern(regexp = "/^\\d+$/",message = "Giá phải là số dương!")
     private String serviceCost;
+    @Pattern(regexp = "/^\\d+$/",message = "Số người phải là số dương!")
     private String serviceMaxPeople;
     private String standardRoom;
     private String descriptionOtherConvenience;
+    @Pattern(regexp = "/^\\d+$/",message = "Diện tích hồ bơi phải là số dương!")
     private String poolArea;
+    @Pattern(regexp = "/^\\d+$/",message = "Số tầng phải là số dương!")
     private String numberOfFloor;
     private RentType rentType;
     private FacilityType facilityType;
@@ -126,6 +136,14 @@ public class FacilityDto implements Validator {
         this.contractList = contractList;
     }
 
+    public String getFacilityCode() {
+        return facilityCode;
+    }
+
+    public void setFacilityCode(String facilityCode) {
+        this.facilityCode = facilityCode;
+    }
+
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
@@ -133,6 +151,8 @@ public class FacilityDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
+        FacilityDto facilityDto = (FacilityDto) target;
     }
+
+
 }

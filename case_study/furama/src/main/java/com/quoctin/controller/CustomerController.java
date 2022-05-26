@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,7 +81,7 @@ public class CustomerController {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             iCustomerService.save(customer);
-            return "redirect:customer/list";
+            return "redirect:/customer/list";
         }
     }
 
@@ -103,7 +104,7 @@ public class CustomerController {
     }
 
 
-    @RequestMapping(value = "/delete")
+    @PostMapping(value = "/delete")
     public String deleteCustomer(@RequestParam Integer id){
         iCustomerService.updateFlag(id);
         return "redirect:list";

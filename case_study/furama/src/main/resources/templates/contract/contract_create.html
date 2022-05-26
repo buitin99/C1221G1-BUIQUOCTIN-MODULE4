@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+
+<form th:object="${contractDto}" method="post" autocomplete="off">
+    <div class="row" style="
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp');
+    height: 150vh;
+  ">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1 style="text-align: center">Create Contract</h1>
+            <table>
+                <tr>
+                    <div class="form-outline">
+                        <input type="date" id="form13" class="form-control" th:field="*{contractStartDate}">
+                        <label class="form-label" for="form13">contractStartDate</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('contractStartDate')}" th:errors="*{contractStartDate}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="date" id="form12" class="form-control" th:field="*{contractEndDate}">
+                        <label class="form-label" for="form12">contractEndDate</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('contractEndDate')}" th:errors="*{contractEndDate}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form11" class="form-control" th:field="*{contractDeposit}">
+                        <label class="form-label" for="form11">contractDeposit</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('contractDeposit')}" th:errors="*{contractDeposit}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form10" class="form-control" th:field="*{contractTotalMoney}">
+                        <label class="form-label" for="form10">contractTotalMoney</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"></p>
+                </tr>
+                <br>
+                <tr>Employee</tr>
+                <br>
+                <tr>
+                    <select th:field="*{employees}">
+                        <option th:each="c : ${employee}" th:value="${c.employeeId}"
+                                th:text="${c.employeeName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Customer</tr>
+                <br>
+                <tr>
+                    <select th:field="*{customer}">
+                        <option th:each="c : ${customer}" th:value="${c.customerId}"
+                                th:text="${c.customerName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Facility</tr>
+                <br>
+                <tr>
+                    <select th:field="*{facility}">
+                        <option th:each="c : ${facility}" th:value="${c.serviceId}"
+                                th:text="${c.serviceName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>
+                    <button type="submit" class="btn btn-primary">Create</button>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

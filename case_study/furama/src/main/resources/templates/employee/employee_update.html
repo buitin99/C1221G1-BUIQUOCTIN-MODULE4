@@ -1,10 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
+<form action="/employee/update" th:object="${employeeDto}" method="post">
+    <div class="row" style="
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp');
+    height: 200vh;
+  ">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1 style="text-align: center">Update Employee</h1>
+            <table>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form12" class="form-control" th:field="*{employeeName}">
+                        <label class="form-label" for="form12">Name Employee</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="date" id="form11" class="form-control" th:field="*{employeeBirth}">
+                        <label class="form-label" for="form11">DOB Employee</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeeBirth')}"
+                       th:errors="*{employeeBirth}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form10" class="form-control" th:field="*{employeeIdCard}">
+                        <label class="form-label" for="form10">ID Card Employee</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeeIdCard')}"
+                       th:errors="*{employeeIdCard}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form7" class="form-control" th:field="*{employeeSalary}">
+                        <label class="form-label" for="form7">Salary Employee</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeeSalary')}"
+                       th:errors="*{employeeSalary}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form8" class="form-control" th:field="*{employeePhone}">
+                        <label class="form-label" for="form8">Phone Employee</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeePhone')}"
+                       th:errors="*{employeePhone}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form6" class="form-control" th:field="*{employeeEmail}">
+                        <label class="form-label" for="form6">Email Customer</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeeEmail')}"
+                       th:errors="*{employeeEmail}"></p>
+                </tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form5" class="form-control" th:field="*{employeeAddress}">
+                        <label class="form-label" for="form5">Address employee</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('employeeAddress')}"
+                       th:errors="*{employeeAddress}"></p>
+                </tr>
+                <br>
+                <tr>Employee Education</tr>
+                <br>
+                <tr>
+                    <select class="mdb-select md-form colorful-select dropdown-primary" th:field="*{education}">
+                        <option th:each="e : ${education}" th:value="${e.educationDegreeId}"
+                                th:text="${e.educationDegreeName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Employee Position</tr>
+                <br>
+                <tr>
+                    <select class="mdb-select md-form colorful-select dropdown-primary" th:field="*{position}">
+                        <option th:each="p : ${position}" th:value="${p.positionId}"
+                                th:text="${p.positionName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Employee Division</tr>
+                <br>
+                <tr>
+                    <select class="mdb-select md-form colorful-select dropdown-primary" th:field="*{division}">
+                        <option th:each="d : ${division}" th:value="${d.divisionId}"
+                                th:text="${d.divisionName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <button type="submit" class="btn btn-primary">Update</button>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 
 </body>
 </html>

@@ -2,28 +2,37 @@ package com.quoctin.dto;
 
 import com.quoctin.model.contract.Contract;
 import com.quoctin.model.customer.CustomerType;
-import com.sun.istack.NotNull;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class CustomerDto implements Validator {
 
     private Integer customerId;
-    @NotNull
+    @Pattern(regexp = "^KH-\\d{4}$",message = "Bạn đã nhập sai định dạng mã khách hàng. VD: KH-1234")
+    private String customerCode;
+    @NotBlank(message = "Tên không được để trống!")
     private String customerName;
-    @NotNull
+    @NotBlank(message = "Ngày sinh không được để trống!")
     private String customerBirth;
-    @NotNull
     private String customerGender;
-    @NotNull
+    @NotBlank(message = "CMND không được để trống!")
+    @Pattern(regexp = "\\d{9}$",message = "Bạn đã nhập sai định dạng. Số CMND phải là số có 9 chữ số")
+    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Số CMND này đã được đăng ký")
     private String customerIdCard;
-    @NotNull
+    @NotBlank(message = "Số điện thoại không được để trống!")
+    @Pattern(regexp = "^(090|091|(84)+90|(84)+91)\\d{7}$",message = "Bạn đã nhập sai định dạng số điện thoại!")
+    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Số điện thoại này đã được đăng ký")
     private String customerPhone;
+    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Địa chỉ Email này đã được đăng ký")
+    @NotBlank(message = "Địa chỉ Email không được để trống!")
+    @Email(message = "Định đạng Email sai định dạng!")
     private String customerEmail;
+    @NotBlank(message = "Địa chỉ không được để trống!")
     private String customerAddress;
     private CustomerType customerType;
     private List<Contract> contractList;
@@ -109,6 +118,14 @@ public class CustomerDto implements Validator {
 
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
+    }
+
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
     }
 
     @Override

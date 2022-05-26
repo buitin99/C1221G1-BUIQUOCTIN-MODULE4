@@ -135,4 +135,6 @@ public class Facility {
     public void setContractList(List<Contract> contractList) {
         this.contractList = contractList;
     }
+
+
 }

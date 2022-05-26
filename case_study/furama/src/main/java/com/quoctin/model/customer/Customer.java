@@ -25,6 +25,7 @@ public class Customer {
     private String customerAddress;
     @Column(columnDefinition = "BIT")
     private Integer flag;
+    private String customerCode;
 
     @ManyToOne
     @JoinColumn(name = "customer_type_id",referencedColumnName = "customerTypeId")
@@ -122,5 +123,13 @@ public class Customer {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
     }
 }

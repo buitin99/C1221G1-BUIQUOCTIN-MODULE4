@@ -69,8 +69,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public String createCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes, Model model) {
+    public String createCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult) {
         new EmployeeDto().validate(employeeDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return "employee/employee_create";
@@ -83,13 +82,13 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/update")
-    public String showUpdateCustomer(Model model, @RequestParam int id) {
-        model.addAttribute("customerDto", this.iEmployeeService.findById(id));
+    public String showUpdateEmployee(Model model, @RequestParam int id) {
+        model.addAttribute("employeeDto", this.iEmployeeService.findById(id));
         return "employee/employee_update";
     }
 
     @PostMapping(value = "/update")
-    public String updateCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, Model model) {
+    public String updateEmployee(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasFieldErrors()) {
             return "employee/employee_update";
         } else {

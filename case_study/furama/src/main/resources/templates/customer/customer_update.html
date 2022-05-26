@@ -3,33 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
 </head>
 <body>
    <h2>Update Customer</h2>
    <form action="/customer/update" th:object="${customerDto}" method="post">
-       <input type="hidden" th:field="*{customerId}"/>
-       <tr>Custome Name</tr><br>
-       <tr><input type="text" th:field="*{customerName}"></tr><br>
-       <tr>Custome Date Of Birth</tr><br>
-       <tr><input type="text" th:field="*{customerBirth}"></tr><br>
-       <tr>Custome Gender</tr><br>
-       <tr><select th:field="*{customerGender}">
-           <option th:value="'0'" th:text="Female"></option>
-           <option th:value="'1'" th:text="Male"></option>
-       </select></tr><br>
-       <tr>Custome Idcard</tr><br>
-       <tr><input type="text" th:field="*{customerIdCard}"></tr><br>
-       <tr>Custome Phone</tr><br>
-       <tr><input type="text" th:field="*{customerPhone}"></tr><br>
-       <tr>Custome Email</tr><br>
-       <tr><input type="text" th:field="*{customerEmail}"></tr><br>
-       <tr>Custome Address</tr><br>
-       <tr><input type="text" th:field="*{customerAddress}"></tr><br>
-       <tr>Custome Type</tr><br>
-       <tr>  <select th:field="*{customerType}">
-           <option th:each="c : ${customerType}" th:value="${c.customerTypeId}" th:text="${c.customerTypeName}"></option>
-       </select></tr><br>
+       <tr>
+           <div class="form-outline">
+               <input type="text" id="form13" class="form-control" th:field="*{customerCode}">
+               <label class="form-label" for="form13">Code Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>
+       </tr>
+       <br>
+       <tr>
+           <div class="form-outline">
+               <input type="text" id="form12" class="form-control" th:field="*{customerName}">
+               <label class="form-label" for="form12">Name Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>
+       </tr>
+       <br>
+       <tr>
+           <div class="form-outline">
+               <input type="date" id="form11" class="form-control" th:field="*{customerBirth}">
+               <label class="form-label" for="form11">DOB Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerBirth')}" th:errors="*{customerBirth}"></p>
+       </tr>
+       <br>
+       <tr>Customer Gender</tr>
+       <br>
+       <tr>
+           <select th:field="*{customerGender}">
+               <option th:value="'0'" th:text="Female"></option>
+               <option th:value="'1'" th:text="Male"></option>
+           </select>
+       </tr>
+       <br>
+       <br>
+       <tr>
+           <div class="form-outline">
+               <input type="text" id="form10" class="form-control" th:field="*{customerIdCard}">
+               <label class="form-label" for="form10">ID Card Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></p>
+       </tr>
+       <br>
+       <tr>
+           <div class="form-outline">
+               <input type="text" id="form9" class="form-control" th:field="*{customerPhone}">
+               <label class="form-label" for="form9">Phone Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></p>
+       </tr>
+       <br>
+       <tr>
+           <div class="form-outline">
+               <input type="text" id="form8" class="form-control" th:field="*{customerEmail}">
+               <label class="form-label" for="form8">Email Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></p>
+       </tr>
+       <br>
+       <tr>
+           <div class="form-outline">
+               <input type="text" id="form7" class="form-control" th:field="*{customerAddress}">
+               <label class="form-label" for="form7">Address Customer</label>
+           </div>
+           <p style="color: red" th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"></p>
+       </tr>
+       <br>
+       <tr>Customer Type</tr>
+       <br>
+       <tr>
+           <select th:field="*{customerType}">
+               <option th:each="c : ${customerType}" th:value="${c.customerTypeId}"
+                       th:text="${c.customerTypeName}"></option>
+           </select>
+       </tr>
+       <br>
                <button type="submit">Update</button>
    </form>
+   <th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 </body>
 </html>
