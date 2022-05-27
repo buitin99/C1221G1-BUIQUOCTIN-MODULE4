@@ -13,8 +13,10 @@ import java.util.List;
 
 public interface ICustomerRepository extends JpaRepository<Customer,Integer> {
 
-    @Query(value = "select * from customer where customer_name like :nameSearch and customer_phone like :phoneSearch and customer_type_id like :typeSearch and flag = 1",nativeQuery = true)
-    List<Customer> search(@Param("nameSearch") String nameSearch, @Param("phoneSearch") String phoneSearch, @Param("typeSearch") String typeSearch);
+    @Query(value = "select * from customer where customer_name like :nameSearch and customer_phone like :phoneSearch and customer_type_id like :typeSearch and flag = 1"
+            ,countQuery = "select * from customer where customer_name like :nameSearch and customer_phone like :phoneSearch and customer_type_id like :typeSearch and flag = 1"
+            ,nativeQuery = true)
+    Page<Customer> search(@Param("nameSearch") String nameSearch, @Param("phoneSearch") String phoneSearch, @Param("typeSearch") String typeSearch,Pageable pageable);
 
     @Modifying
     @Transactional

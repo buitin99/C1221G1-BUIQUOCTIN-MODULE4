@@ -22,13 +22,10 @@ public class CustomerDto implements Validator {
     private String customerGender;
     @NotBlank(message = "CMND không được để trống!")
     @Pattern(regexp = "\\d{9}$",message = "Bạn đã nhập sai định dạng. Số CMND phải là số có 9 chữ số")
-    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Số CMND này đã được đăng ký")
     private String customerIdCard;
     @NotBlank(message = "Số điện thoại không được để trống!")
     @Pattern(regexp = "^(090|091|(84)+90|(84)+91)\\d{7}$",message = "Bạn đã nhập sai định dạng số điện thoại!")
-    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Số điện thoại này đã được đăng ký")
     private String customerPhone;
-    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Địa chỉ Email này đã được đăng ký")
     @NotBlank(message = "Địa chỉ Email không được để trống!")
     @Email(message = "Định đạng Email sai định dạng!")
     private String customerEmail;

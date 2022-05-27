@@ -44,7 +44,8 @@ public class CustomerController {
 //        return "customer/customer_list";
 //    }
     @GetMapping(value = "/list")
-    public String searchCustomer(@RequestParam("name") Optional<String> name,
+    public String searchCustomer(@PageableDefault(value = 2) Pageable pageable,
+            @RequestParam("name") Optional<String> name,
                                  @RequestParam("phone") Optional<String> phone,
                                  @RequestParam("type") Optional<String> type,
                                  Model model) {
@@ -60,7 +61,7 @@ public class CustomerController {
 //        }else{
 //            typeSearch="";
 //        }
-        List<Customer> customerPage = this.iCustomerService.search(nameSearch, phoneSearch, typeSearch);
+        Page<Customer> customerPage = this.iCustomerService.search(nameSearch, phoneSearch, typeSearch,pageable);
         model.addAttribute("customer", customerPage);
         return "customer/customer_list";
     }

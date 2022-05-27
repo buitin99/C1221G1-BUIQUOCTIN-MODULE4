@@ -14,7 +14,7 @@ public interface ICustomerService {
     Customer findById(int id);
 
 
-    List<Customer> search(String nameSearch, String phoneSearch, String typeSearch);
+    Page<Customer> search(String nameSearch, String phoneSearch, String typeSearch, Pageable pageable);
 
 
     void updateFlag(Integer id);

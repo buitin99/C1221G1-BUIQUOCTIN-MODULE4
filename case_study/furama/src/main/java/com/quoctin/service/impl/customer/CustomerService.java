@@ -32,8 +32,8 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public List<Customer> search(String nameSearch, String phoneSearch, String typeSearch) {
-        return iCustomerRepository.search("%" + nameSearch  + "%","%" + phoneSearch + "%" ,"%" +  typeSearch + "%");
+    public Page<Customer> search(String nameSearch, String phoneSearch, String typeSearch,Pageable pageable) {
+        return iCustomerRepository.search("%" + nameSearch  + "%","%" + phoneSearch + "%" ,"%" +  typeSearch + "%",pageable);
     }
 
 

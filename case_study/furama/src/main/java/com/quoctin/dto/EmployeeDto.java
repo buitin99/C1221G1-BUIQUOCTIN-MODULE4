@@ -28,9 +28,7 @@ public class EmployeeDto implements Validator {
     private String employeeSalary;
     @NotBlank(message = "Số điện thoại không được để trống!")
     @Pattern(regexp = "^(090|091|(84)+90|(84)+91)\\d{7}$",message = "Bạn đã nhập sai định dạng số điện thoại!")
-    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Số điện thoại này đã được đăng ký")
     private String employeePhone;
-    @Pattern(regexp = "/(\\b\\w+\\b)(?=.*\\b\\1\\b)/\n",message = "Địa chỉ Email này đã được đăng ký")
     @NotBlank(message = "Địa chỉ Email không được để trống!")
     @Email(message = "Định đạng Email sai định dạng!")
     private String employeeEmail;
@@ -41,8 +39,6 @@ public class EmployeeDto implements Validator {
     private Division division;
     private User user;
 
-
-
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
@@ -50,7 +46,7 @@ public class EmployeeDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
+        EmployeeDto employeeDto = (EmployeeDto) target;
     }
 
     public EmployeeDto() {

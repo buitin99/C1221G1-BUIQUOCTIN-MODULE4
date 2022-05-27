@@ -6,14 +6,14 @@ import com.quoctin.model.employee.Employees;
 import com.quoctin.model.service.Facility;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+//import org.thymeleaf.util.Validate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import com.quoctin.common.Validate;
 
 public class ContractDto implements Validator {
 
@@ -32,6 +32,8 @@ public class ContractDto implements Validator {
     private Customer customer;
     private Facility facility;
     private List<ContractDetail> contractDetailList;
+
+    public static final String DATE_TIME_REGEX = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$";
 
     public ContractDto() {
     }
@@ -118,5 +120,49 @@ public class ContractDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         ContractDto contractDto = (ContractDto) target;
+
+        if ("".matches(contractDto.contractStartDate)) {
+            errors.rejectValue("contractStartDate", "blank.error", "System Error");
+        } else if (!contractDto.contractStartDate.matches(Validate.DATE_TIME_REGEX)) {
+            errors.rejectValue("contractStartDate", "birthday.error", "System Error");
+        } else {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            Date current = new Date();
+            try {
+                date = fmt.parse(contractDto.contractStartDate);
+//                 KIEM TRA NGAY CO TRONG QUA KHU KHONG
+                if (date != null && date.compareTo(new Date()) < 0) {
+                    errors.rejectValue("contractStartDate", "", "Start date don't in the past");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                errors.rejectValue("contractStartDate", "birthday.error", "System Error");
+            }
+        }
+
+
+        if ("".matches(contractDto.contractEndDate)) {
+            errors.rejectValue("contractEndDate", "blank.error", "System Error");
+        } else if (!contractDto.contractEndDate.matches(Validate.DATE_TIME_REGEX)) {
+            errors.rejectValue("contractEndDate", "birthday.error", "System Error");
+        } else {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = null;
+            Date endDate = null;
+            Date current = new Date();
+            try {
+                endDate = fmt.parse(contractDto.contractEndDate);
+                startDate = fmt.parse(contractDto.contractStartDate);
+//                 KIEM TRA NGAY CO TRONG QUA KHU KHONG
+                if (endDate != null && endDate.compareTo(startDate) < 0) {
+                    errors.rejectValue("contractEndDate", "", "End date must be after Start date");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                errors.rejectValue("contractEndDate", "birthday.error", "System Error");
+
+            }
+        }
     }
 }
