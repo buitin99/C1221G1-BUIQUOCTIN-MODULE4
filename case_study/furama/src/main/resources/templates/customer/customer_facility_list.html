@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">-->
+    <!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">-->
+</head>
+<body>
+<h1 style="text-align: center">Customer List</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form action="/customer/list" method="get">
+            <h3>Search</h3>
+            <!-- Name input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form1Example1" class="form-control" name="name"/>
+                <label class="form-label" for="form1Example1">Name Search</label>
+            </div>
+            <!-- Phone input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form1Example2" class="form-control" name="phone"/>
+                <label class="form-label" for="form1Example2">Phone Search</label>
+            </div>
+            <div>
+                <td>
+                    <div class="ms-3">
+                        <select name="type">
+                            <option value="">select</option>
+                            <option th:each="c : ${customerType}" th:value="${c.customerTypeId}"
+                                    th:text="${c.customerTypeName}"></option>
+                        </select>
+                    </div>
+                </td>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Name</th>
+        <th>Date Of Birth</th>
+        <th>Gender</th>
+        <th>Id Card</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Type</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customers : ${customer}">
+        <td>
+            <div class="d-flex align-items-center">
+                <div class="ms-3">
+                    <p class="fw-bold mb-1" th:text="${customers.customerName}"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${customers.customerBirth}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <th:block th:if="${customers.customerGender == '0'}">
+                    <p th:text="female"></p>
+                </th:block>
+                <th:block th:if="${customers.customerGender == '1'}">
+                    <p th:text="male"></p>
+                </th:block>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${customers.customerIdCard}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${customers.customerPhone}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${customers.customerEmail}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${customers.customerAddress}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${customers.customerType.customerTypeName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <a th:href="@{/customer/update(id=${customers.customerId})}">Update Customer</a>
+            </div>
+        </td>
+        <!--        <td>-->
+        <!--            <div class="ms-3">-->
+        <!--                <a th:href="@{/customer/delete(id=${customers.customerId})}">Delete Customer</a>-->
+        <!--            </div>-->
+        <!--        </td>-->
+        <td>
+            <a class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+               th:attr="onclick=|deleteModal(${customers.customerId}, '${customers.customerName}')|">
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" th:action="@{/customer/delete}">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="get-id">
+                    <h1 style="color: black" id="get-name">
+                        Name Customer:
+                    </h1>
+                    <hr>
+                    <p>Are You Sure ???</p>
+                    <p style="color: red">this action cant not revert</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete It !</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("get-id").value = id;
+        document.getElementById("get-name").innerText = name;
+    }
+</script>
+<div>
+    <a th:if="${customer.hasPrevious()}"
+       th:href="@{/customer/list(page=${customer.number - 1 })}">
+        Previous
+    </a>
+    <span th:text="${customer.number +1 }"></span>/<span th:text="${customer.totalPages}"></span>
+    <a th:if="${customer.hasNext()}" th:href="@{/customer/list(page=${customer.number + 1 })}">
+        Next
+    </a>
+</div>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

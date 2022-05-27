@@ -1,6 +1,8 @@
 package com.quoctin.controller;
 
 import com.quoctin.dto.CustomerDto;
+import com.quoctin.dto.IBooking;
+import com.quoctin.model.contract.ContractDetail;
 import com.quoctin.model.customer.Customer;
 import com.quoctin.model.customer.CustomerType;
 import com.quoctin.service.icustomer.ICustomerService;
@@ -109,6 +111,22 @@ public class CustomerController {
     public String deleteCustomer(@RequestParam Integer id){
         iCustomerService.updateFlag(id);
         return "redirect:list";
+    }
+
+    @GetMapping(value = "/customer_list")
+    public String contractDetailList(@PageableDefault(value = 2) Pageable pageable,
+                                     Model model) {
+        Page<Customer> customerPage = this.iCustomerService.findAllCustomer(pageable);
+        model.addAttribute("customer", customerPage);
+        return "customer/customer_facility_list";
+    }
+
+    @GetMapping(value = "/booking")
+    public String booking(@PageableDefault(value = 2) Pageable pageable,
+                                 Model model) {
+        Page<IBooking> booking = this.iCustomerService.booking(pageable);
+        model.addAttribute("booking", booking);
+        return "customer/booking";
     }
 
 }

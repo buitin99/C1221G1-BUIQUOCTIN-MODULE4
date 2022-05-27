@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+
+<form th:object="${contractDetailDto}" method="post" autocomplete="off">
+    <div class="row" style="
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp');
+    height: 150vh;
+  ">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1 style="text-align: center">Create Contract Detail</h1>
+            <table>
+                <tr>Customer Name</tr>
+                <br>
+                <tr>
+                    <select th:field="*{contract}">
+                        <option th:each="c : ${contract}" th:value="${c.contractId}"
+                                th:text="${c.customer.customerName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Facility Name</tr>
+                <br>
+                <tr>
+                    <select th:field="*{attachService}">
+                        <option th:each="c : ${attach}" th:value="${c.attachServiceId}"
+                                th:text="${c.attachServiceName}"></option>
+                    </select>
+                </tr>
+                <br>
+                <tr>Quantity</tr>
+                <br>
+                <tr>
+                    <div class="form-outline">
+                        <input type="text" id="form13" class="form-control" th:field="*{quantity}">
+                        <label class="form-label" for="form13">Quantity</label>
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <button type="submit" class="btn btn-primary">Create</button>
+            </table>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

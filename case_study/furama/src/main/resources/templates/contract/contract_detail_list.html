@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+        <th>Quantity</th>
+        <th>Attach Service</th>
+        <th>Contract</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contractDetails : ${contractDetail}">
+        <td>
+            <div class="d-flex align-items-center">
+                <div class="ms-3">
+                    <p class="fw-bold mb-1" th:text="${contractDetails.quantity}"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contractDetails.attachService.attachServiceName}"></p>
+            </div>
+        </td>
+        <td>
+            <div class="ms-3">
+                <p class="fw-bold mb-1" th:text="${contractDetails.contract.facility.serviceName}"></p>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:if="${contractDetail.hasPrevious()}"
+       th:href="@{/detail/list(page=${contractDetail.number - 1 })}">
+        Previous
+    </a>
+    <span th:text="${contractDetail.number +1 }"></span>/<span th:text="${contractDetail.totalPages}"></span>
+    <a th:if="${contractDetail.hasNext()}" th:href="@{/detail/list(page=${contractDetail.number + 1 })}">
+        Next
+    </a>
+</div>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>

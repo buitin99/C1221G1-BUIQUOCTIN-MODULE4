@@ -1,5 +1,6 @@
 package com.quoctin.service.impl.customer;
 
+import com.quoctin.dto.IBooking;
 import com.quoctin.model.customer.Customer;
 import com.quoctin.repository.customer.ICustomerRepository;
 import com.quoctin.service.icustomer.ICustomerService;
@@ -45,6 +46,16 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<Customer> findAll() {
         return iCustomerRepository.findAll();
+    }
+
+    @Override
+    public Page<Customer> findAllCustomer(Pageable pageable) {
+        return iCustomerRepository.findAllCustomer(pageable);
+    }
+
+    @Override
+    public Page<IBooking> booking(Pageable pageable) {
+        return iCustomerRepository.booking(pageable);
     }
 
 

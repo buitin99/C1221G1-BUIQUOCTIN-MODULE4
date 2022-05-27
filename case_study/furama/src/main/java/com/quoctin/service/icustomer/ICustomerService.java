@@ -1,5 +1,6 @@
 package com.quoctin.service.icustomer;
 
+import com.quoctin.dto.IBooking;
 import com.quoctin.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,8 @@ public interface ICustomerService {
     void updateFlag(Integer id);
 
     List<Customer> findAll();
+
+    Page<Customer> findAllCustomer(Pageable pageable);
+
+    Page<IBooking> booking(Pageable pageable);
 }

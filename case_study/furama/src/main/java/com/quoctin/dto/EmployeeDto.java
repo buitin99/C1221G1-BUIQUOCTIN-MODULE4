@@ -3,7 +3,7 @@ package com.quoctin.dto;
 import com.quoctin.model.employee.Division;
 import com.quoctin.model.employee.Education;
 import com.quoctin.model.employee.Position;
-import com.quoctin.model.user.User;
+//import com.quoctin.model.user.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -37,7 +37,7 @@ public class EmployeeDto implements Validator {
     private Position position;
     private Education education;
     private Division division;
-    private User user;
+//    private User user;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -140,11 +140,11 @@ public class EmployeeDto implements Validator {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

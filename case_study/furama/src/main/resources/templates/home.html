@@ -2,69 +2,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Furama Home</title>
+    <title>Quoc Tin Home</title>
     <th:block th:replace="~{layout :: css}"></th:block>
     <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="font-awesome.min.css">
 
 </head>
 <body>
-<!-- Navbar-->
-<header class="header">
-    <nav class="navbar navbar-expand-lg fixed-top py-3">
-        <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">Transparent Nav</a>
-            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="#" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="/customer/home" class="nav-link text-uppercase font-weight-bold">Customer</a></li>
-                    <li class="nav-item"><a href="/employee/home" class="nav-link text-uppercase font-weight-bold">Employee</a></li>
-                    <li class="nav-item"><a href="/facility/home" class="nav-link text-uppercase font-weight-bold">Facility</a></li>
-                    <li class="nav-item"><a href="/contract/home" class="nav-link text-uppercase font-weight-bold">Contract</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">QuocTin Coporation</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contracts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Facility</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Booking</a>
+                </li>
+            </ul>
         </div>
-    </nav>
-</header>
+    </div>
+</nav>
 
-
-<!-- For demo purpose -->
-<div class="container">
-    <div class="pt-5 text-white">
-        <header class="py-5 mt-5">
-            <h1 class="display-4">Transparent Navbar</h1>
-            <p class="lead mb-0">Using Bootstrap 4 and Javascript, create a transparent navbar which changes its style on scroll.</p>
-            <p class="lead mb-0">Snippet by
-                <a href="https://furamavietnam.com/" class="text-white">
-                    <u>Furama</u></a>
-            </p>
-        </header>
-        <div class="py-5">
-            <p class="lead">Lorem ipsum dolor sit amet, <strong class="font-weight-bold">consectetur adipisicing </strong>elit. Explicabo consectetur odio voluptatum facere animi temporibus, distinctio tempore enim corporis quam <strong class="font-weight-bold">recusandae </strong>placeat! Voluptatum voluptate, ex modi illum quas nam distinctio.</p>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-mdb-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="d-block w-100" alt="Wild Landscape"/>
         </div>
-        <div class="py-5">
-            <p class="lead">Lorem ipsum dolor sit amet, <strong class="font-weight-bold">consectetur adipisicing </strong>elit. Explicabo consectetur odio voluptatum facere animi temporibus, distinctio tempore enim corporis quam <strong class="font-weight-bold">recusandae </strong>placeat! Voluptatum voluptate, ex modi illum quas nam distinctio.</p>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="carousel-item">
+            <img src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp" class="d-block w-100" alt="Camera"/>
+        </div>
+        <div class="carousel-item">
+            <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100" alt="Exotic Fruits"/>
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-        $(window).on('scroll', function () {
-            if ( $(window).scrollTop() > 10 ) {
-                $('.navbar').addClass('active');
-            } else {
-                $('.navbar').removeClass('active');
-            }
-        });
-    });
-</script>
-<script src="jquery-3.3.1.slim.min.js"></script>
-<script src="bootstrap.bundle.min.js"></script>
-<!--<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>-->
+<div>
+    <div class="col-4"></div>
+    <div class="col-8"></div>
+</div>
+<th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
 </body>
 </html>

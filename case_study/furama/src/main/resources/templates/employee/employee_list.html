@@ -48,7 +48,8 @@
         </td>
         <td>
             <div class="ms-3">
-                <p class="fw-bold mb-1" th:text="${employees.employeeSalary}"></p>
+<!--                <p class="fw-bold mb-1" th:text="${employees.employeeSalary}"></p>-->
+                <p class="fw-bold mb-1" th:text="${#numbers.formatDecimal(employees.employeeSalary, 0, 'COMMA',0,'POINT')}"></p>
             </div>
         </td>
         <td>

@@ -84,4 +84,5 @@ public class ContractController {
             return "redirect:/contract/list";
         }
     }
+
 }
