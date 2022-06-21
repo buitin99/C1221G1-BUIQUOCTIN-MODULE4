@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout :: css}"></th:block>
+    <th:block th:replace="~{layout :: top-bootstrap}"></th:block>
+</head>
+<body>
+<h2>Update Order Product</h2>
+<form action="/order/update" th:object="${orderProductDto}" method="post">
+    <tr>
+        <div class="form-outline">
+            <input type="hidden" id="form14" class="form-control" th:field="*{id}">
+            <label class="form-label" for="form14">Name Product</label>
+        </div>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>-->
+    </tr>
+    <br>
+
+    <tr>
+        <select th:field="*{product}">
+            <option th:each="c : ${product}" th:value="${c.id}"
+                    th:text="${c.name}"></option>
+        </select>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>-->
+    </tr>
+    <br>
+    <tr>
+        Type Of Product
+    </tr>
+    <br>
+    <tr>
+        <select th:field="*{product.productType}">
+            <option th:each="c : ${productType}" th:value="${c.id}"
+                    th:text="${c.name}"></option>
+        </select>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>-->
+    </tr>
+    <br>
+    <br>
+    <tr>
+        <div class="form-outline">
+            <input type="date" id="form11" class="form-control" th:field="*{date}">
+            <label class="form-label" for="form11">DOB Buy</label>
+        </div>
+<!--        <p style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>-->
+    </tr>
+    <br>
+    <tr>Amout</tr>
+    <br>
+    <br>
+    <tr>
+        <div class="form-outline">
+            <input type="text" id="form10" class="form-control" th:field="*{amount}">
+            <label class="form-label" for="form10">Amount</label>
+        </div>
+        <p style="color: red" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></p>
+    </tr>
+    <br>
+    <br>
+    <button type="submit">Update</button>
+</form><th:block th:replace="~{layout :: bot-bootstrap}"></th:block>
+</body>
+</html>
